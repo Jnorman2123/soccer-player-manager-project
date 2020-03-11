@@ -1,5 +1,5 @@
-export default function playerReducer( state = { players: [], action}) {
-    switch(action.type) {
+export default function playerReducer( state = { players: [] }, action) {
+    switch (action.type) {
         case 'ADD_PLAYER':
             return {
                 ...state,
