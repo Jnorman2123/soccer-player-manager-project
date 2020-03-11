@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Teams from '../components/teams/Teams'
 
 
 class TeamContainer extends Component {
@@ -6,6 +7,7 @@ class TeamContainer extends Component {
         return (
             <div>
                 Teams Container
+                <Teams />
             </div>
         )
     }
