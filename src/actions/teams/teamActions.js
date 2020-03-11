@@ -1,9 +1,10 @@
 export function fetchTeams() {
     return (dispatch) => {
+        console.log('hello')
         dispatch({type: 'START_ADDING_TEAMS_REQUEST' })
         fetch('http://localhost:3001/teams')
             .then(resp => resp.json())
-            .then(teams => dispatch({ type: 'ADD_TEAMS', teams}))
+            .then(teams => console.log(teams))
     }
 }
 
@@ -14,3 +15,4 @@ export function addTeam(team) {
     }
 }
 
+// dispatch({ type: 'ADD_TEAMS', teams})

@@ -4,6 +4,7 @@ import Teams from './components/teams/Teams'
 import Players from './components/players/Players'
 import NavBar from './components/nav/NavBar'
 import Home from './components/home/Home'
+import TeamContainer from './containers/TeamContainer'
 
 const routes = (
     <div>
@@ -12,6 +13,7 @@ const routes = (
             <Route exact path='/' component={Home} />}
             <Route exact path='/teams' component={Teams} />
             <Route exact path='/players' component={Players} />
+            <Route exact path='/teamContainer' component={TeamContainer} />
         </Switch>
     </div>
 )
