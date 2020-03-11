@@ -4,6 +4,7 @@ import { fetchTeams } from '../../actions/teams/teamActions'
 // import Team from './Team'
 
 class Teams extends Component {
+    
     componentDidMount() {
         this.props.fetchTeams()
     }

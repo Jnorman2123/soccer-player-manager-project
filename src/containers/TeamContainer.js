@@ -8,7 +8,7 @@ class TeamContainer extends Component {
         return (
             <div>
                 Team Container
-                <Teams fecthTeams={this.props.fetchTeams}/>
+                <Teams />
                 <TeamForm />
             </div>
         )
