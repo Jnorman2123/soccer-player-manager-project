@@ -1,11 +1,13 @@
 import React from 'react'
 import { Route, Switch } from 'react-router'
-import TeamContainer from './containers/TeamContainer'
+import Teams from './components/teams/Teams'
 
 const routes = (
     <div>
         <Switch>
-            <Route exact path='/teams' component={TeamContainer} />
+            <Route exact path='/teams' component={Teams} />
         </Switch>
     </div>
 )
+
+export default routes
