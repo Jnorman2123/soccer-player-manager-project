@@ -1,10 +1,22 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 class NavBar extends Component {
     render () {
         return (
            <div>
-               <div><button>Home</button><button>Teams</button><button>Players</button></div><br></br>
+               <div>
+                    <Link to='/'>
+                        <button>Home</button>
+                    </Link>
+                    <Link to='/teams'>
+                        <button>Teams</button>
+                    </Link>
+                    <Link to='/players'>
+                        <button>Players</button>
+                    </Link>
+                </div>
+                   <br></br>
            </div> 
         )
     }
