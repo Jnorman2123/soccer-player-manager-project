@@ -4,7 +4,7 @@ class NavBar extends Component {
     render () {
         return (
            <div>
-               <button>Home</button>
+               <div><button>Home</button><button>Teams</button><button>Players</button></div><br></br>
            </div> 
         )
     }
