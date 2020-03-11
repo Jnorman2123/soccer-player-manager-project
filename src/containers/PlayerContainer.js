@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import Players from '../components/players/Players' 
+import Players from '../components/players/Players'
+import PlayerForm from '../components/players/PlayerForm' 
 
 class PlayerContainer extends Component {
     render () {
@@ -7,6 +8,7 @@ class PlayerContainer extends Component {
             <div>
                 Player Container
                 <Players />
+                <PlayerForm />
             </div>
         )
     }
