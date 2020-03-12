@@ -15,6 +15,9 @@ class NavBar extends Component {
                     <Link to='/players'>
                         <button>Players</button>
                     </Link>
+                    <Link to='/teams/new'>
+                        <button>Create a Team</button>
+                    </Link>
                 </div>
                    <br></br>
            </div> 
