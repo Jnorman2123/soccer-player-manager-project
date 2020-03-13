@@ -7,14 +7,17 @@ export function fetchTeams() {
     }
 }
 
-export function fetchTeam(id) {
-    return (dispatch) => {
-        dispatch({type: 'START_LOADING_TEAM_REQUEST'})
-        return fetch(`http://localhost:3001/teams/${id}`)
-            .then(resp => resp.json())
-            .then(teamId => dispatch({type: 'LOAD_TEAM', teamId}))
-    }
-} 
+// export function fetchTeam(id) {
+//     return (dispatch) => {
+//         dispatch({type: 'START_LOADING_TEAM_REQUEST'})
+//         return fetch(`http://localhost:3001/teams/${id}`)
+//             .then(resp => resp.json())
+//             .then(team => {
+//                 const teamId = team.id
+//                 dispatch({type: 'LOAD_TEAM', teamId})
+//             })
+//     }
+// } 
 
 export function addTeam(team) {
     console.log(team)

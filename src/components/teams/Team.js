@@ -1,18 +1,39 @@
-import React from 'react' 
+import React, { Component } from 'react' 
 import { connect } from 'react-redux'
-import { fetchTeam } from '../../actions/teams/teamActions'
+import { fetchTeams } from '../../actions/teams/teamActions'
 
-const Team = ({match, location}) => {
-    const { params: { teamId} } = match
+class Team extends Component {
 
-    this.props.fetchTeams(teamId)
+    componentDidMount() {
+        this.props.fetchTeams()
+    }
 
-    return (
-        <div>
-            Team
-            {teams[teamId -1].name}
-        </div>
-    )
+    renderTeam() {
+        const teamId = parseInt(this.props.match.params.teamID)
+        const theTeam = this.props.teams.teams.filter(team => team.id === teamId)[0]
+        if (theTeam !== undefined) {
+            return <div>
+                <h3>{theTeam.name}</h3>
+                <button>Delete {theTeam.name}</button>
+            </div>
+        }
+    }
+
+    render() {
+        
+        
+        return (
+            <div>
+                Team<br></br>
+                {this.renderTeam()}
+            </div>
+        )
+        
+    }   
+} 
+
+const mapStateToProps = (state) => {
+    return {teams: state.teams}
 }
 
-export default connect(null, { fetchTeam })(Team)
+export default connect(mapStateToProps, { fetchTeams })(Team)

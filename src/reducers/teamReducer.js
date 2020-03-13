@@ -14,6 +14,19 @@ export default function teamReducer(state = { teams: [], requesting: false }, ac
                 teams: action.teams,
                 requesting: false
             }
+        // case 'START_LOADING_TEAM_REQUEST':
+        //     return {
+        //         ...state,
+        //         requesting: true
+        //     }
+
+        // case 'LOAD_TEAM':
+        //     const team = state.teams.filter(team => team.id === action.teamId)
+        //     return {
+        //         ...state,
+        //         teams: team,
+        //         requesting: false
+        //     }
         case 'START_ADD_TEAM_REQUEST':
             return {
                 ...state,
