@@ -24,6 +24,7 @@ s
             formation: '',
             salary_cap: ''
         })
+        this.props.history.push('/teams')
     }
 
     render() {

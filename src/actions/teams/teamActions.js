@@ -32,7 +32,6 @@ export function addTeam(team) {
         })
             .then(resp => resp.json())
             .then(teamData => {
-                console.log(teamData)
                 const salary_cap = parseInt(teamData.salary_cap)
                 dispatch({
                     type: 'ADD_TEAM',
@@ -48,13 +47,11 @@ export function addTeam(team) {
 }
 
 export function deleteTeam(id) {
-    console.log(id)
     return (dispatch) => {
         dispatch({type: 'START_DELETE_TEAM_REQUEST'})
         return fetch(`http://localhost:3001/teams/${id}`, {
             method: 'DELETE',
-        })  .then(resp => resp.json())
-            .then(dispatch => dispatch({type: 'DELETE_TEAM'}, id))
+        })
     }
 
 }

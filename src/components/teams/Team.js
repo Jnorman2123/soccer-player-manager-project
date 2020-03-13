@@ -1,15 +1,18 @@
 import React, { Component } from 'react' 
 import { connect } from 'react-redux'
-import { fetchTeams } from '../../actions/teams/teamActions'
+import { fetchTeams, deleteTeam } from '../../actions/teams/teamActions'
 
 class Team extends Component {
+    
 
     componentDidMount() {
         this.props.fetchTeams()
     }
 
-    handleClick = (event) => {
-        console.log(event.target)
+    handleClick = () => {
+        const id = this.props.match.params.teamID
+        this.props.deleteTeam(id)
+        this.props.history.push('/teams')
     }
 
     renderTeam() {
@@ -40,4 +43,4 @@ const mapStateToProps = (state) => {
     return {teams: state.teams}
 }
 
-export default connect(mapStateToProps, { fetchTeams })(Team)
+export default connect(mapStateToProps, { fetchTeams, deleteTeam })(Team)
