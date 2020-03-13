@@ -8,13 +8,17 @@ class Team extends Component {
         this.props.fetchTeams()
     }
 
+    handleClick = (event) => {
+        console.log(event.target)
+    }
+
     renderTeam() {
         const teamId = parseInt(this.props.match.params.teamID)
         const theTeam = this.props.teams.teams.filter(team => team.id === teamId)[0]
         if (theTeam !== undefined) {
             return <div>
                 <h3>{theTeam.name}</h3>
-                <button>Delete {theTeam.name}</button>
+                <button onClick={this.handleClick}>Delete {theTeam.name}</button>
             </div>
         }
     }
