@@ -5,7 +5,7 @@ import { fetchTeam } from '../../actions/teams/teamActions'
 const Team = ({match, location}) => {
     const { params: { teamId} } = match
 
-    this.props.fetchTeams()
+    this.props.fetchTeams(teamId)
 
     return (
         <div>
