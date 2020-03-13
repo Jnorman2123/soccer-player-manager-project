@@ -20,7 +20,6 @@ export function fetchTeams() {
 // } 
 
 export function addTeam(team) {
-    console.log(team)
     return (dispatch) => { 
         dispatch({type: 'START_ADD_TEAM_REQUEST'})
         return fetch('http://localhost:3001/teams', {
@@ -46,5 +45,17 @@ export function addTeam(team) {
             })
         
     }
+}
+
+export function deleteTeam(id) {
+    console.log(id)
+    return (dispatch) => {
+        dispatch({type: 'START_DELETE_TEAM_REQUEST'})
+        return fetch(`http://localhost:3001/teams/${id}`, {
+            method: 'DELETE',
+        })  .then(resp => resp.json())
+            .then(dispatch => dispatch({type: 'DELETE_TEAM'}, id))
+    }
+
 }
 
