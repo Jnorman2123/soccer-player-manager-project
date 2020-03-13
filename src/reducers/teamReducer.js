@@ -2,13 +2,13 @@ import { StaticRouter } from "react-router-dom"
 
 export default function teamReducer(state = { teams: [], requesting: false }, action) {
     switch (action.type) {
-        case 'START_ADDING_TEAMS_REQUEST':
+        case 'START_LOADING_TEAMS_REQUEST':
             return {
                 ...state,
                 teams: [...state.teams],
                 requesting: true
             }
-        case 'ADD_TEAMS':
+        case 'LOAD_TEAMS':
             return {
                 ...state,
                 teams: action.teams,
