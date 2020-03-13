@@ -8,9 +8,24 @@ export function fetchTeams() {
 }
 
 export function addTeam(team) {
-    return { 
-        type: 'ADD_TEAM',
-        team: team
+    return (dispatch) => { 
+        dispatch({type: 'ADD_TEAM'})
+        fetch('http://localhost:3001/teams', {
+            method: 'POST',
+            headers: {
+                'Content Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(team)
+        })
+            .then(resp => resp.json())
+            .then(teamData => {
+                dispatch({
+                    type: 'ADD_TEAM',
+                    team: teamData
+                })
+            })
+        
     }
 }
 

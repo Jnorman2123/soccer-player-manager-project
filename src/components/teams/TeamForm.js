@@ -1,4 +1,5 @@
 import React, { Component } from 'react' 
+import { connect } from 'react-redux'
 
 class TeamForm extends Component {
     state = {
@@ -6,6 +7,7 @@ class TeamForm extends Component {
             formation: '',
             salary_cap: ''
     }
+    
     
     handleChange = (event) => {
         this.setState({
@@ -15,7 +17,8 @@ class TeamForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        console.log(this.state)
+        
+        // this.props.addTeam(this.state)
         this.setState({
             name: '',
             formation: '',
@@ -24,6 +27,7 @@ class TeamForm extends Component {
     }
 
     render() {
+        console.log(this.props)
         return (
             <div>
                 <h3>Create a New Team</h3>
@@ -41,4 +45,4 @@ class TeamForm extends Component {
     }
 }
 
-export default TeamForm
+export default connect(null)(TeamForm)
