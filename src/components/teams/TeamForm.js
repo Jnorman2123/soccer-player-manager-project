@@ -1,18 +1,13 @@
 import React, { Component } from 'react' 
 
 class TeamForm extends Component {
-    constructor() {
-        super()
-
-        this.state = {
+    state = {
             name: '',
             formation: '',
             salary_cap: ''
-        }
     }
     
     handleChange = (event) => {
-        console.log(event.target.value)
         this.setState({
             [event.target.name]: event.target.value
         })
@@ -20,14 +15,19 @@ class TeamForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
+        console.log(this.state)
+        this.setState({
+            name: '',
+            formation: '',
+            salary_cap: ''
+        })
     }
 
     render() {
-        console.log(this.state)
         return (
             <div>
                 <h3>Create a New Team</h3>
-                <form>
+                <form onSubmit={this.handleSubmit}> 
                     <label>Name: </label>
                     <input name='name' type='text' onChange={this.handleChange} value={this.state.name}></input><br></br>
                     <label>Formation: </label>
