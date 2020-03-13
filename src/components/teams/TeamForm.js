@@ -1,5 +1,6 @@
 import React, { Component } from 'react' 
 import { connect } from 'react-redux'
+import { addTeam } from '../../actions/teams/teamActions'
 
 class TeamForm extends Component {
     state = {
@@ -14,11 +15,10 @@ class TeamForm extends Component {
             [event.target.name]: event.target.value
         })
     }
-
+s
     handleSubmit = (event) => {
         event.preventDefault()
-        
-        // this.props.addTeam(this.state)
+        this.props.addTeam(this.state)
         this.setState({
             name: '',
             formation: '',
@@ -27,7 +27,6 @@ class TeamForm extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <div>
                 <h3>Create a New Team</h3>
@@ -45,4 +44,9 @@ class TeamForm extends Component {
     }
 }
 
-export default connect(null)(TeamForm)
+
+// function mapDispatchToProps(dispatch) {
+//     return { addTeam: (team) => dispatch(addTeam(team))}
+// }
+
+export default connect(null, { addTeam })(TeamForm)
