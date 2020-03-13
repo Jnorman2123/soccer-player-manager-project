@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchTeams } from '../../actions/teams/teamActions' 
-// import Team from './Team'
+import { fetchTeams } from '../../actions/teams/teamActions'
+import { Link } from 'react-router-dom' 
+
 
 class Teams extends Component {
     
@@ -14,7 +15,9 @@ class Teams extends Component {
             <div>
                 Teams
                 {this.props.teams.teams.map((team, i) => {
-                    return <p key={i} >{team.name}</p>
+                    return <Link to={`/teams/${team.id}`} key={i}>
+                            <p>{team.name} </p>
+                        </Link>
                 })} 
                 {/* <Team /> */}
             </div>

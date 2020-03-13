@@ -44,9 +44,4 @@ s
     }
 }
 
-
-// function mapDispatchToProps(dispatch) {
-//     return { addTeam: (team) => dispatch(addTeam(team))}
-// }
-
 export default connect(null, { addTeam })(TeamForm)

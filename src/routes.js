@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router'
 import Teams from './components/teams/Teams'
+import Team from './components/teams/Team'
 import Players from './components/players/Players'
 import NavBar from './components/nav/NavBar'
 import Home from './components/home/Home'
@@ -14,6 +15,7 @@ const routes = (
             <Route exact path='/teams' component={Teams} />
             <Route exact path='/players' component={Players} />
             <Route exact path='/teams/new' component={TeamForm} />
+            <Route exact path='/teams/:teamID' component={Team} />
         </Switch>
     </div>
 )
