@@ -1,13 +1,18 @@
-import React, { Component } from 'react' 
+import React from 'react' 
+import { connect } from 'react-redux'
+import { fetchTeam } from '../../actions/teams/teamActions'
 
-class Team extends Component {
-    render() {
-        return (
-            <div>
-                Team
-            </div>
-        )
-    }
+const Team = ({match, location}) => {
+    const { params: { teamId} } = match
+
+    this.props.fetchTeams()
+
+    return (
+        <div>
+            Team
+            {teams[teamId -1].name}
+        </div>
+    )
 }
 
-export default Team
+export default connect(null, { fetchTeam })(Team)

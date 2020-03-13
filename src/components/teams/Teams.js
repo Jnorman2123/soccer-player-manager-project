@@ -19,7 +19,6 @@ class Teams extends Component {
                             <p>{team.name} </p>
                         </Link>
                 })} 
-                {/* <Team /> */}
             </div>
         )
     }
