@@ -25,7 +25,9 @@ class TeamContainer extends Component {
                         <p>{player.name}</p>
                     </div>
                 })}
-                <button>Add Player</button>
+                <Link to={{pathname: `/teams/${teamId.toString()}/transfer`, team: theTeam }  }>
+                        <button>Add Player to {theTeam.name}</button>
+                </Link>
                 <h4>{theTeam.name} has ${theTeam.salary_cap.toString()} remaining salary cap balance.</h4>
                 <button onClick={() => {this.props.deleteTeam(teamId); this.props.history.push('/teams')} }>Delete {theTeam.name}</button>
                 <Link to={{pathname: `/teams/${teamId.toString()}/edit`, team: theTeam }  }>
