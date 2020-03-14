@@ -17,6 +17,12 @@ class EditTeamForm extends Component {
         }
     }
 
+    handleChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })  
+    }
+
 
     render() {
 
@@ -26,7 +32,12 @@ class EditTeamForm extends Component {
             <div>
                 <form>
                     <label>Name: </label>
-                    <input type='text' value={this.state.name}></input>
+                    <input type='text' name='name' onChange={this.handleChange} value={this.state.name}></input><br></br>
+                    <label>Formation: </label>
+                    <input type='text' name='formation' onChange={this.handleChange} value={this.state.formation}></input><br></br>
+                    <label>Salary Cap: </label>
+                    <input type='number' name='salary_cap' onChange={this.handleChange} value={this.state.salary_cap}></input><br></br>
+                    <input type='submit' value='Edit Team'></input>
                 </form>
             </div>
         )
