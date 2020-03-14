@@ -21,7 +21,7 @@ class PlayersContainer extends Component {
     render () {
         return (
             <div>
-                Player Container
+                Players Container
                 <Players props={this.props} renderPlayers={this.renderPlayers} />
             </div>
         )
