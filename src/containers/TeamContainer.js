@@ -15,8 +15,10 @@ class TeamContainer extends Component {
         const theTeam = this.props.teams.teams.filter(team => team.id === parseInt(teamId))[0]
         if (theTeam !== undefined) {
             return <div>
+                <p>{theTeam.players[0]}</p>
                 <h2>{theTeam.name}</h2>
                 <h3>{theTeam.formation}</h3>
+                <button>Add Player</button>
                 <h4>{theTeam.name} has ${theTeam.salary_cap.toString()} remaining salary cap balance.</h4>
                 <button onClick={() => {this.props.deleteTeam(teamId); this.props.history.push('/teams')} }>Delete {theTeam.name}</button>
                 <Link to={{pathname: `/teams/${teamId.toString()}/edit`, team: theTeam }  }>

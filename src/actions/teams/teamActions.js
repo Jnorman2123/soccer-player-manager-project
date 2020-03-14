@@ -30,6 +30,7 @@ export function addTeam(team) {
                     }
                 })
             })
+            .catch(error => console.log(error))
         
     }
 }
