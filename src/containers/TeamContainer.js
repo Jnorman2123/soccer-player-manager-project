@@ -29,7 +29,6 @@ class TeamContainer extends Component {
     render() {
         return (
             <div>
-                Team Container
                 <Team props={this.props} renderTeam={this.renderTeam} />
             </div>
         )
