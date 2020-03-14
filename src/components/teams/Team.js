@@ -1,21 +1,5 @@
-import React, { Component } from 'react' 
+import React from 'react' 
 
-class Team extends Component {
-    
-
-    componentDidMount() {
-        this.props.fetchTeams()
-    }
-
-    render() {      
-        return (
-            <div>
-                Team<br></br>
-                {this.props.renderTeam()}
-            </div>
-        )
-        
-    }   
-} 
+const Team = (props) => <>{props.renderTeam()}</> 
 
 export default Team

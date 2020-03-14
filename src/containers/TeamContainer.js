@@ -6,6 +6,10 @@ import Team from '../components/teams/Team'
 
 class TeamContainer extends Component {
 
+    componentDidMount() {
+        this.props.fetchTeams()
+    }
+
     renderTeam() {
         const teamId = this.props.match.params.teamID
         const theTeam = this.props.teams.teams.filter(team => team.id === parseInt(teamId))[0]
@@ -26,7 +30,7 @@ class TeamContainer extends Component {
         return (
             <div>
                 Team Container
-                <Team renderTeam={this.renderTeam} fetchTeams={this.props.fetchTeams} props={this.props} deleteTeam={this.props.deleteTeam} />
+                <Team props={this.props} renderTeam={this.renderTeam} />
             </div>
         )
     }
