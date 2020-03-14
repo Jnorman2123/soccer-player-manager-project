@@ -47,6 +47,7 @@ export function addTeam(team) {
 }
 
 export function editTeam(team, id) {
+    debugger
     return (dispatch) => { 
         dispatch({type: 'START_EDIT_TEAM_REQUEST'})
         return fetch(`http://localhost:3001/teams/${id}`, {

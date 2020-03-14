@@ -44,14 +44,14 @@ class EditTeamForm extends Component {
 
         return (
             <div>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <label>Name: </label>
                     <input type='text' name='name' onChange={this.handleChange} value={this.state.name}></input><br></br>
                     <label>Formation: </label>
                     <input type='text' name='formation' onChange={this.handleChange} value={this.state.formation}></input><br></br>
                     <label>Salary Cap: </label>
                     <input type='number' name='salary_cap' onChange={this.handleChange} value={this.state.salary_cap}></input><br></br>
-                    <input type='submit' onSubmit={this.handleSubmit} value='Edit Team'></input>
+                    <input type='submit' value='Edit Team'></input>
                 </form>
             </div>
         )
