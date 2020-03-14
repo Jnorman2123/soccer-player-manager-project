@@ -4,6 +4,7 @@ import TeamsContainer from './containers/TeamsContainer'
 import TeamContainer from './containers/TeamContainer'
 import PlayerContainer from './containers/PlayerContainer'
 import PlayersContainer from './containers/PlayersContainer'
+import TransferContainer from './containers/TransferContainer'
 import NavBar from './components/nav/NavBar'
 import Home from './components/home/Home'
 import TeamForm from './components/teams/TeamForm'
@@ -24,6 +25,7 @@ const routes = (
             <Route exact path='/players/:playerID' component={PlayerContainer} />
             <Route exact path='/teams/:teamID/edit' component={EditTeamForm} />
             <Route exact path='/players/:playerID/edit' component={EditPlayerForm} />
+            <Route exact path='/teams/:teamID/transfer' component={TransferContainer} />
         </Switch>
     </div>
 )
