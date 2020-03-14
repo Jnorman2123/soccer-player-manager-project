@@ -8,6 +8,8 @@ import NavBar from './components/nav/NavBar'
 import Home from './components/home/Home'
 import TeamForm from './components/teams/TeamForm'
 import EditTeamForm from './components/teams/EditTeamForm'
+import PlayerForm from './components/players/PlayerForm'
+// import EditPlayerForm from './components/players/EditPlayerForm'
 
 const routes = (
     <div>
@@ -17,9 +19,11 @@ const routes = (
             <Route exact path='/teams' component={TeamsContainer} />
             <Route exact path='/players' component={PlayersContainer} />
             <Route exact path='/teams/new' component={TeamForm} />
+            <Route exact path='/players/new' component={PlayerForm} />
             <Route exact path='/teams/:teamID' component={TeamContainer} />
             <Route exact path='/players/:playerID' component={PlayerContainer} />
             <Route exact path='/teams/:teamID/edit' component={EditTeamForm} />
+            {/* <Route exact path='/players/:playerID/edit' component={EditPlayerForm} /> */}
         </Switch>
     </div>
 )
