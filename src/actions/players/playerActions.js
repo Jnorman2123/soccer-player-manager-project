@@ -8,8 +8,65 @@ export function fetchPlayers() {
 }
 
 export function addPlayer(player) {
-    return { 
-        type: 'ADD_PLAYER',
-        player: player
+    return (dispatch) => { 
+        dispatch({type: 'START_ADD_PLAYER_REQUEST'})
+        return fetch('http://localhost:3001/players', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(player)
+        })
+            .then(resp => resp.json())
+            .then(playerData => {
+                const value = parseInt(playerData.value)
+                dispatch({
+                    type: 'ADD_PLAYER',
+                    player: {
+                        name: playerData.name,
+                        position: playerData.position,
+                        value: value
+                    }
+                })
+            })
+        
     }
+}
+
+export function editPlayer(player, id) {
+    return (dispatch) => { 
+        dispatch({type: 'START_EDIT_PLAYER_REQUEST'})
+        return fetch(`http://localhost:3001/players/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(player)
+        })
+            .then(resp => resp.json())
+            .then(playerData => {
+                const value = parseInt(playerData.value)
+                dispatch({
+                    type: 'EDIT_PLAYER',
+                    player: {
+                        name: playerData.name,
+                        position: playerData.position,
+                        value: value
+                    }
+                })
+            })
+        
+    }
+}
+
+export function deletePlayer(id) {
+    return (dispatch) => {
+        dispatch({type: 'START_PLAYER_TEAM_REQUEST'})
+        return fetch(`http://localhost:3001/player/${id}`, {
+            method: 'PLAYER',
+        })
+    }
+
 }

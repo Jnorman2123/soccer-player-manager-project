@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchPlayers, deletePlayer } from '../actions/players/playerActions'
 import { Link } from 'react-router-dom'
-import Player from '../components/Players/Player'
+import Player from '../components/players/Player'
 
 class PlayerContainer extends Component {
 
