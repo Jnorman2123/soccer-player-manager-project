@@ -9,7 +9,7 @@ import Home from './components/home/Home'
 import TeamForm from './components/teams/TeamForm'
 import EditTeamForm from './components/teams/EditTeamForm'
 import PlayerForm from './components/players/PlayerForm'
-// import EditPlayerForm from './components/players/EditPlayerForm'
+import EditPlayerForm from './components/players/EditPlayerForm'
 
 const routes = (
     <div>
@@ -23,7 +23,7 @@ const routes = (
             <Route exact path='/teams/:teamID' component={TeamContainer} />
             <Route exact path='/players/:playerID' component={PlayerContainer} />
             <Route exact path='/teams/:teamID/edit' component={EditTeamForm} />
-            {/* <Route exact path='/players/:playerID/edit' component={EditPlayerForm} /> */}
+            <Route exact path='/players/:playerID/edit' component={EditPlayerForm} />
         </Switch>
     </div>
 )
