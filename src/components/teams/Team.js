@@ -1,6 +1,7 @@
 import React, { Component } from 'react' 
 import { connect } from 'react-redux'
 import { fetchTeams, deleteTeam } from '../../actions/teams/teamActions'
+import { Link } from 'react-router-dom'
 
 class Team extends Component {
     
@@ -9,17 +10,17 @@ class Team extends Component {
         this.props.fetchTeams()
     }
 
-    handleDelete = () => {
+    handleClick = () => {
         const id = this.props.match.params.teamID
         this.props.deleteTeam(id)
         this.props.history.push('/teams')
     }
 
-    handleEdit = () => {
-        const teamId = parseInt(this.props.match.params.teamID)
-        const theTeam = this.props.teams.teams.filter(team => team.id === teamId)[0]
-        this.props.editTeam(theTeam)
-    }
+    // handleEdit = () => {
+    //     const teamId = parseInt(this.props.match.params.teamID)
+    //     const theTeam = this.props.teams.teams.filter(team => team.id === teamId)[0]
+    //     this.props.editTeam(theTeam)
+    // }
 
     renderTeam() {
         const teamId = parseInt(this.props.match.params.teamID)
@@ -27,8 +28,10 @@ class Team extends Component {
         if (theTeam !== undefined) {
             return <div>
                 <h3>{theTeam.name}</h3>
-                <button onClick={this.handleEdit}>Edit {theTeam.name}</button>
-                <button onClick={this.handleDelete}>Delete {theTeam.name}</button>
+                <button onClick={this.handleClick}>Delete {theTeam.name}</button>
+                <Link to={`/teams/${teamId.toString()}/edit`}>
+                        <button>Edit {theTeam.name}</button>
+                </Link>
             </div>
         }
     }

@@ -46,6 +46,10 @@ export function addTeam(team) {
     }
 }
 
+export function editTeam(team) {
+    
+}
+
 export function deleteTeam(id) {
     return (dispatch) => {
         dispatch({type: 'START_DELETE_TEAM_REQUEST'})
