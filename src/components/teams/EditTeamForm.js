@@ -1,4 +1,6 @@
 import React, { Component } from 'react' 
+import { connect } from 'react-redux'
+import { editTeam } from '../../actions/teams/teamActions'
 
 class EditTeamForm extends Component {
     state = {
@@ -23,10 +25,22 @@ class EditTeamForm extends Component {
         })  
     }
 
+    handleSubmit = (event) => {
+        event.preventDefault()
+        const teamId = this.props.match.params.teamID
+        this.props.editTeam(this.state, teamId)
+        this.setState({
+            name: '',
+            formation: '',
+            salary_cap: ''
+        })
+        this.props.history.push(`/teams/${teamId}`)
+    }
+
 
     render() {
 
-        console.log(this.state)
+        console.log(this.props.match.params.teamID)
 
         return (
             <div>
@@ -37,11 +51,11 @@ class EditTeamForm extends Component {
                     <input type='text' name='formation' onChange={this.handleChange} value={this.state.formation}></input><br></br>
                     <label>Salary Cap: </label>
                     <input type='number' name='salary_cap' onChange={this.handleChange} value={this.state.salary_cap}></input><br></br>
-                    <input type='submit' value='Edit Team'></input>
+                    <input type='submit' onSubmit={this.handleSubmit} value='Edit Team'></input>
                 </form>
             </div>
         )
     }
 }
 
-export default EditTeamForm
+export default connect(null, { editTeam })(EditTeamForm)
