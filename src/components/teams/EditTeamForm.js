@@ -39,9 +39,6 @@ class EditTeamForm extends Component {
 
 
     render() {
-
-        console.log(this.props.match.params.teamID)
-
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>

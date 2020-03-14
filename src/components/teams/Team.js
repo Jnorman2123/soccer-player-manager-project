@@ -16,18 +16,14 @@ class Team extends Component {
         this.props.history.push('/teams')
     }
 
-    // handleEdit = () => {
-    //     const teamId = parseInt(this.props.match.params.teamID)
-    //     const theTeam = this.props.teams.teams.filter(team => team.id === teamId)[0]
-    //     this.props.editTeam(theTeam)
-    // }
-
     renderTeam() {
         const teamId = parseInt(this.props.match.params.teamID)
         const theTeam = this.props.teams.teams.filter(team => team.id === teamId)[0]
         if (theTeam !== undefined) {
             return <div>
-                <h3>{theTeam.name}</h3>
+                <h2>{theTeam.name}</h2>
+                <h3>{theTeam.formation}</h3>
+                <h4>{theTeam.name} has ${theTeam.salary_cap.toString()} remaining salary cap balance.</h4>
                 <button onClick={this.handleClick}>Delete {theTeam.name}</button>
                 <Link to={{pathname: `/teams/${teamId.toString()}/edit`, team: theTeam }  }>
                         <button>Edit {theTeam.name}</button>
