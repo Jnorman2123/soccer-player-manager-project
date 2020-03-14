@@ -1,13 +1,5 @@
-import React, { Component } from 'react' 
+import React from 'react' 
 
-class Player extends Component {
-    render() {
-        return (
-            <div>
-                Player
-            </div>
-        )
-    }
-}
+const Player = (props) => <>{props.renderPlayer()}</>
 
 export default Player
