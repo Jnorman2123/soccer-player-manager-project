@@ -1,19 +1,23 @@
 import React, { Component } from 'react'
-// import { connect } from 'react-redux'
+import { connect } from 'react-redux'
+import { fetchTeams } from '../actions/teams/teamActions'
 import Teams from '../components/teams/Teams'
-import TeamForm from '../components/teams/TeamForm'
 
 class TeamContainer extends Component {
 
     render() {
+        console.log(this.props)
         return (
             <div>
                 Team Container
-                <Teams />
-                <TeamForm />
+                <Teams fetchTeams={this.props.fetchTeams} teams={this.props.teams}/>
             </div>
         )
     }
 }
 
-export default TeamContainer
+function mapStateToProps(state) {
+    return {teams: state.teams}
+}
+
+export default connect(mapStateToProps, { fetchTeams })(TeamContainer)

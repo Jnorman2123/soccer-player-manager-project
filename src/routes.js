@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Switch } from 'react-router'
-import Teams from './components/teams/Teams'
+import TeamContainer from './containers/TeamContainer'
 import Team from './components/teams/Team'
 import Players from './components/players/Players'
 import NavBar from './components/nav/NavBar'
@@ -13,7 +13,7 @@ const routes = (
         <NavBar />
         <Switch>
             <Route exact path='/' component={Home} />}
-            <Route exact path='/teams' component={Teams} />
+            <Route exact path='/teams' component={TeamContainer} />
             <Route exact path='/players' component={Players} />
             <Route exact path='/teams/new' component={TeamForm} />
             <Route exact path='/teams/:teamID' component={Team} />
