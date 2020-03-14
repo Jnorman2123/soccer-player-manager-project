@@ -29,7 +29,7 @@ class Team extends Component {
             return <div>
                 <h3>{theTeam.name}</h3>
                 <button onClick={this.handleClick}>Delete {theTeam.name}</button>
-                <Link to={`/teams/${teamId.toString()}/edit`}>
+                <Link to={{pathname: `/teams/${teamId.toString()}/edit`, team: theTeam }  }>
                         <button>Edit {theTeam.name}</button>
                 </Link>
             </div>
