@@ -64,8 +64,8 @@ export function editPlayer(player, id) {
 export function deletePlayer(id) {
     return (dispatch) => {
         dispatch({type: 'START_PLAYER_TEAM_REQUEST'})
-        return fetch(`http://localhost:3001/player/${id}`, {
-            method: 'PLAYER',
+        return fetch(`http://localhost:3001/players/${id}`, {
+            method: 'DELETE',
         })
     }
 
