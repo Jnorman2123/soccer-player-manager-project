@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchPlayers } from '../actions/players/playerActions' 
+import { fetchPlayers } from '../actions/players/playerActions'
+import { Link } from 'react-router-dom' 
 import Players from '../components/players/Players'
 
 class PlayersContainer extends Component {
@@ -11,7 +12,9 @@ class PlayersContainer extends Component {
 
     renderPlayers() {
         return this.props.players.players.map((player, i) => {
-            return <p key={i} >{player.name}</p>
+            return <Link to={`/players/${player.id}`} key={i}>
+            <p>{player.name} </p>
+        </Link>
         })
     }
 
