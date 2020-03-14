@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchTeams, deleteTeam } from '../actions/teams/teamActions'
+import { addTransfer } from '../actions/transfers/transferActions'
 import { Link } from 'react-router-dom'
 import Team from '../components/teams/Team'
 
@@ -47,4 +48,4 @@ const mapStateToProps = (state) => {
     return {teams: state.teams}
 }
 
-export default connect(mapStateToProps, { fetchTeams, deleteTeam })(TeamContainer)
+export default connect(mapStateToProps, { fetchTeams, deleteTeam, addTransfer })(TeamContainer)
