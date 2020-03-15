@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchTeam, deleteTeam } from '../actions/teams/teamActions'
-import { addTransfer } from '../actions/transfers/transferActions'
+import { deleteTransfer } from '../actions/transfers/transferActions'
 import { Link } from 'react-router-dom'
 import Team from '../components/teams/Team'
 
@@ -14,16 +14,27 @@ class TeamContainer extends Component {
 
     renderPlayers() {
         const theTeam = this.props.teams.teams
+        console.log(theTeam)
         if (theTeam.players !== undefined && theTeam.players.length === 0) {
-            return <h4>This Team Currently Has No Players</h4>
+            return <div>
+                <h4>This Team Currently Has No Players</h4>
+                <Link to={{pathname: `/teams/${theTeam.id}/transfer`, team: theTeam }  }>
+                    <button>Add Player to {theTeam.name}</button>
+                </Link>
+            </div>
+            
         } else if (theTeam.players !== undefined && theTeam.players.length > 0) {
             return <div>
+                {/* {theTeam.transfers.map(transfer => {
+                    return <p>{transfer.id}</p>
+                })} */}
                 <h3>Players</h3>
                 <h4>Forwards</h4>
                 {theTeam.players.map((player, i) => {
                     if (player.position === 'Forward') {
                         return <div key={i}>
                             <h3>{player.name}</h3>
+                            <button onClick={() => {this.props.deleteTransfer(theTeam.id, player.id); this.props.history.push(`/teams/${theTeam.id}`)} }>Remove Player</button>
                         </div>
                 }})}
                 <h4>Midfielders</h4>
@@ -81,4 +92,4 @@ const mapStateToProps = (state) => {
     return {teams: state.teams}
 }
 
-export default connect(mapStateToProps, { fetchTeam, deleteTeam, addTransfer })(TeamContainer)
+export default connect(mapStateToProps, { fetchTeam, deleteTeam, deleteTransfer })(TeamContainer)
