@@ -44,8 +44,15 @@ class EditTeamForm extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>Name: </label>
                     <input type='text' name='name' onChange={this.handleChange} value={this.state.name}></input><br></br>
-                    <label>Formation: </label>
-                    <input type='text' name='formation' onChange={this.handleChange} value={this.state.formation}></input><br></br>
+                    <label>
+                        Select Formation:
+                        <select name='formation' value={this.state.formation} onChange={this.handleChange}>
+                            <option value='4-3-3'>4-3-3</option>
+                            <option value='4-4-2'>4-4-2</option>
+                            <option value='3-4-3'>3-4-3</option>
+                            <option value='3-5-2'>3-5-2</option>
+                        </select> 
+                    </label><br></br>
                     <label>Salary Cap: </label>
                     <input type='number' name='salary_cap' onChange={this.handleChange} value={this.state.salary_cap}></input><br></br>
                     <input type='submit' value='Edit Team'></input>
