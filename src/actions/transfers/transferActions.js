@@ -10,7 +10,7 @@
 export function addTransfer(transfer) {
     return (dispatch) => { 
         dispatch({type: 'START_ADD_TRANSFER_REQUEST'})
-        return fetch('http://localhost:3001/transfers', {
+        return fetch('http://localhost:3001/transfers/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -23,8 +23,8 @@ export function addTransfer(transfer) {
                 dispatch({
                     type: 'ADD_TRANSFER',
                     transfer: {
-                        team: transferData.team,
-                        player: transferData.player,
+                        team_id: transferData.team_id,
+                        player_id: transferData.player_id,
                     }
                 })
             })
@@ -58,10 +58,10 @@ export function addTransfer(transfer) {
 //     }
 // }
 
-export function deleteTeam(id) {
+export function deleteTransfer(id) {
     return (dispatch) => {
-        dispatch({type: 'START_DELETE_TEAM_REQUEST'})
-        return fetch(`http://localhost:3001/teams/${id}`, {
+        dispatch({type: 'START_DELETE_TRANSFER_REQUEST'})
+        return fetch(`http://localhost:3001/transfers/${id}`, {
             method: 'DELETE',
         })
     }

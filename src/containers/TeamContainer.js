@@ -21,11 +21,33 @@ class TeamContainer extends Component {
                 <h3>Players</h3>
                 <h4>Forwards</h4>
                 {theTeam.players.map((player, i) => {
-                if (player.position === 'Forward') {
-                    return <div key={i}>
-                    <h3>{player.name}</h3>
-                </div>
-            }})}
+                    if (player.position === 'Forward') {
+                        return <div key={i}>
+                            <h3>{player.name}</h3>
+                        </div>
+                }})}
+                <h4>Midfielders</h4>
+                {theTeam.players.map((player, i) => {
+                    if (player.position === 'Midfielder') {
+                        return <div key={i}>
+                            <h3>{player.name}</h3>
+                        </div>
+                }})}
+                <h4>Defenders</h4>
+                {theTeam.players.map((player, i) => {
+                    if (player.position === 'Defender') {
+                        return <div key={i}>
+                            <h3>{player.name}</h3>
+                        </div>
+                }})}
+                <h4>Goalkeeper</h4>
+                {theTeam.players.map((player, i) => {
+                    if (player.position === 'Goalkeeper') {
+                        return <div key={i}>
+                            <h3>{player.name}</h3>
+                        </div>
+                }})}
+
             <Link to={{pathname: `/teams/${theTeam.id}/transfer`, team: theTeam }  }>
                         <button>Add Player to {theTeam.name}</button>
             </Link>
