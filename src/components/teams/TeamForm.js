@@ -34,8 +34,15 @@ s
                 <form onSubmit={this.handleSubmit}> 
                     <label>Name: </label>
                     <input name='name' type='text' onChange={this.handleChange} value={this.state.name}></input><br></br>
-                    <label>Formation: </label>
-                    <input name='formation' type='text' onChange={this.handleChange} value={this.state.formation}></input><br></br>
+                    <label>
+                        Select Formation:
+                        <select name='formation' value={this.state.formation} onChange={this.handleChange}>
+                            <option value='4-3-3'>4-3-3</option>
+                            <option value='4-4-2'>4-4-2</option>
+                            <option value='3-4-3'>3-4-3</option>
+                            <option value='3-5-2'>3-5-2</option>
+                        </select> 
+                    </label><br></br>
                     <label>Salary Cap: </label>
                     <input name='salary_cap' type='number' onChange={this.handleChange} value={this.state.salary_cap}></input><br></br>
                     <input type='submit' value='Create Team'></input>
