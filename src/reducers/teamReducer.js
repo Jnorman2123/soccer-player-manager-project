@@ -13,6 +13,18 @@ export default function teamReducer(state = { teams: [], requesting: false }, ac
                 teams: action.teams,
                 requesting: false
             }
+        case 'START_LOAD_TEAM_REQUEST':
+            return {
+                ...state,
+                teams: [...state.teams],
+                requesting: true
+            }
+        case 'LOAD_TEAM':
+            return {
+                ...state, 
+                teams: action.team,
+                requesting: false
+            }
         case 'START_ADD_TEAM_REQUEST':
             return {
                 ...state,

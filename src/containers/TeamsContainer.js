@@ -7,15 +7,18 @@ import Teams from '../components/teams/Teams'
 class TeamsContainer extends Component {
 
     componentDidMount() {
+        this.props.teams.teams = []
         this.props.fetchTeams()
     }
 
     renderTeams()  {
-        return this.props.teams.teams.map((team, i) => {
-        return <Link to={`/teams/${team.id}`} key={i}>
-            <p>{team.name} </p>
-        </Link>
-        })
+        if (this.props.teams.teams.length !== undefined) {
+            return this.props.teams.teams.map((team, i) => {
+                return <Link to={`/teams/${team.id}`} key={i}>
+                    <p>{team.name} </p>
+                </Link>
+            })
+        }
     }
 
     render() {

@@ -7,6 +7,15 @@ export function fetchTeams() {
     }
 }
 
+export function fetchTeam(id) {
+    return (dispatch) => {
+        dispatch({type: 'START_LOAD_TEAM_REQUEST'})
+        return fetch(`http://localhost:3001/teams/${id}`)
+            .then(resp => resp.json())
+            .then(team => dispatch({type: 'LOAD_TEAM', team}))
+    }
+}
+
 export function addTeam(team) {
     return (dispatch) => { 
         dispatch({type: 'START_ADD_TEAM_REQUEST'})

@@ -1,13 +1,14 @@
-import React, { Component } from 'react' 
+import React, { Component } from 'react'
+import Transfer from '../components/transfers/Transfer'
 
 class TransferContainer extends Component {
     
     render() {
-        console.log(this.props.location.team.name)
-        // const team = this.props.location.team
+        const teamId = this.props.match.params.teamID
         return (
             <div>
                 TransferContainer
+                <Transfer teamId={teamId} />
             </div>
         )
     }
