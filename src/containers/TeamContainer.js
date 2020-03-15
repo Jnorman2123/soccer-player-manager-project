@@ -14,7 +14,8 @@ class TeamContainer extends Component {
 
     renderPlayers() {
         const theTeam = this.props.teams.teams
-        console.log(theTeam)
+        console.log(theTeam.id)
+        console.log(theTeam.players)
         if (theTeam.players !== undefined && theTeam.players.length === 0) {
             return <div>
                 <h4>This Team Currently Has No Players</h4>
@@ -25,16 +26,20 @@ class TeamContainer extends Component {
             
         } else if (theTeam.players !== undefined && theTeam.players.length > 0) {
             return <div>
-                {/* {theTeam.transfers.map(transfer => {
-                    return <p>{transfer.id}</p>
-                })} */}
                 <h3>Players</h3>
                 <h4>Forwards</h4>
                 {theTeam.players.map((player, i) => {
                     if (player.position === 'Forward') {
                         return <div key={i}>
                             <h3>{player.name}</h3>
-                            <button onClick={() => {this.props.deleteTransfer(theTeam.id, player.id); this.props.history.push(`/teams/${theTeam.id}`)} }>Remove Player</button>
+                            {player.transfers.map(transfer => {
+                                if (transfer.team_id === theTeam.id) {
+                                    return <button 
+                                    onClick={() => {this.props.deleteTransfer(transfer.id); this.props.history.push(`/teams/${theTeam.id}`)} }>
+                                        Remove {player.name}
+                                    </button>
+                                } 
+                            })}
                         </div>
                 }})}
                 <h4>Midfielders</h4>
@@ -81,7 +86,7 @@ class TeamContainer extends Component {
 
     render() {
         return (
-            <div>Hi
+            <div>
                 <Team props={this.props} renderTeam={this.renderTeam} renderPlayers={this.renderPlayers} />
             </div>
         )

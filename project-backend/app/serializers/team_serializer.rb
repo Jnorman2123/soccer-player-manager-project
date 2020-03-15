@@ -1,10 +1,6 @@
 class TeamSerializer < ActiveModel::Serializer
-  attributes :id, :name, :formation, :salary_cap, :players, :transfers
+  attributes :id, :name, :formation, :salary_cap, :players
   def players 
       ActiveModel::SerializableResource.new(object.players,  each_serializer: PlayerSerializer)
-  end 
-
-  def transfers 
-    ActiveModel::SerializableResource.new(object.transfers,  each_serializer: TransferSerializer)
   end 
 end

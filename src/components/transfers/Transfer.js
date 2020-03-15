@@ -19,7 +19,7 @@ class Transfer extends Component {
     createPlayers() {
         if (this.props.players.players.length > 0) {
             return this.props.players.players.map((player, i) => {
-                return <option key={i} value={player.id}>{player.name}</option>
+                return <option key={i} value={player.id}>{player.name} Price: ${player.value} {player.position}</option>
             })
         }
     }
@@ -33,12 +33,14 @@ s
     handleSubmit = (event) => {
         event.preventDefault()
         this.props.addTransfer(this.state)
+        this.props.teams.teams = []
+        this.props.props.history.push(`/teams/${this.props.teamId}`)
     }
 
     render() {
         return (
             <div>
-                Transfer
+                Remaining Salary Cap ${this.props.teams.teams.salary_cap}
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Choose Player to Add:
@@ -46,7 +48,7 @@ s
                             {this.createPlayers()}
                         </select><br></br>
                     </label>
-                    <input type='submit' value="Add Player to"></input>
+                    <input type='submit'value="Add Player"></input>
                 </form>
             </div>
         )

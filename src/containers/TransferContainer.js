@@ -8,7 +8,7 @@ class TransferContainer extends Component {
         return (
             <div>
                 TransferContainer
-                <Transfer teamId={teamId} />
+                <Transfer teamId={teamId} props={this.props} />
             </div>
         )
     }

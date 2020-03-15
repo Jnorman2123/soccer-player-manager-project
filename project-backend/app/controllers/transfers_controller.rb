@@ -3,7 +3,12 @@ class TransfersController < ApplicationController
     def index 
         transfers = Transfer.all 
         render json: transfers
-    end 
+    end
+
+    def show 
+        transfer = Transfer.find(params[:id])
+        render json: @team
+    end
     
     def create 
         team = Team.find(params[:team_id])
@@ -13,8 +18,8 @@ class TransfersController < ApplicationController
         transfer.save
     end 
 
-    def delete
-        transfer = Transfer.find(params[:transfer_id])
+    def destroy
+        transfer = Transfer.find(params[:id])
         transfer.destroy
     end 
 
