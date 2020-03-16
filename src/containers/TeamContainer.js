@@ -40,7 +40,7 @@ class TeamContainer extends Component {
         this.getTeamData()
     }
 
-    renderPlayers = () => {
+    renderPlayers = (props, position) => {
         const theTeam = this.state
         const teamId = this.props.match.params.teamID
         const players = this.props.teams.teams.players
@@ -53,12 +53,12 @@ class TeamContainer extends Component {
             </div>
             
         } else if (players !== undefined && players.length > 0) {
-            return <div>
-                <h3>Players</h3>
+            return <div name={position}>
+                <h3>{position}s</h3>
                 {players.map((player, i) => {
+                    if (player.position === position) {
                         return <div key={i}>
                             <h3>{player.name}</h3>
-                            <h4>{player.position}</h4>
                             {player.transfers.map((transfer, i) => {
                                 if (transfer.team_id.toString() === teamId) {
                                     return <button key={i}
@@ -70,10 +70,7 @@ class TeamContainer extends Component {
                                 } 
                             })}
                         </div>
-                })}<br></br>
-            <Link to={{pathname: `/teams/${teamId}/transfer`, team: theTeam }  }>
-                        <button>Add Player to {theTeam.name}</button>
-            </Link>
+                }})}
             </div>
         }
     }
@@ -89,6 +86,9 @@ class TeamContainer extends Component {
                 <button onClick={() => {this.props.deleteTeam(teamId); this.props.history.push('/teams')} }>Delete {theTeam.name}</button>
                 <Link to={{pathname: `/teams/${teamId}/edit`, team: this.props.teams.teams }  }>
                         <button>Edit {theTeam.name}</button>
+                </Link>
+                <Link to={{pathname: `/teams/${teamId}/transfer`, team: theTeam }  }>
+                    <button>Add Player to {theTeam.name}</button>
                 </Link>
             </div>
         }      
