@@ -10,18 +10,22 @@ class PlayersContainer extends Component {
         this.props.fetchPlayers()
     }
 
-    renderPlayers() {
-        return this.props.players.players.map((player, i) => {
-            return <Link to={`/players/${player.id}`} key={i}>
-            <p>{player.name} </p>
-        </Link>
-        })
+    renderPlayers(position) {
+        return <div name={position}>
+            <h1>{position}s</h1>
+            {this.props.players.players.map((player, i) => {
+                if (player.position === position) {
+                    return <Link to={`/players/${player.id}`} key={i}>
+                        <p>{player.name} - Value: ${player.value}</p>
+                    </Link>
+                } 
+            })}
+        </div>
     }
 
     render () {
         return (
             <div>
-                Players Container
                 <Players props={this.props} renderPlayers={this.renderPlayers} />
             </div>
         )

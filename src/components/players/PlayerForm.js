@@ -37,6 +37,7 @@ s
                     <label>
                         Select Position:
                         <select name='position' value={this.state.position} onChange={this.handleChange}>
+                        <option value='DEFAULT' >Choose a Position</option>
                             <option value='Forward'>Forward</option>
                             <option value='Midfielder'>Midfielder</option>
                             <option value='Defender'>Defender</option>

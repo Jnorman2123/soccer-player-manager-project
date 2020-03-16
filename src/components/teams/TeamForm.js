@@ -37,6 +37,7 @@ s
                     <label>
                         Select Formation:
                         <select name='formation' value={this.state.formation} onChange={this.handleChange}>
+                            <option value='DEFAULT' >Choose a Formation</option>
                             <option value='4-3-3'>4-3-3</option>
                             <option value='4-4-2'>4-4-2</option>
                             <option value='3-4-3'>3-4-3</option>

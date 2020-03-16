@@ -34,20 +34,34 @@ class Transfer extends Component {
         })
         
         setTimeout(() => {
-          const playerCosts = this.props.teams.teams.players.map(player => player.value)
-          const totalPlayerCost = playerCosts.reduce((previousCost, currentCost, index) => previousCost + currentCost, 0)
-          this.setState( () => ({
-            name: this.props.teams.teams.name,
-            formation: this.props.teams.teams.formation,
-            salary_cap: this.props.teams.teams.salary_cap - totalPlayerCost
-          }))  
+            const playerCosts = this.props.teams.teams.players.map(player => player.value)
+            const totalPlayerCost = playerCosts.reduce((previousCost, currentCost, index) => previousCost + currentCost, 0)
+            this.setState( () => ({
+                name: this.props.teams.teams.name,
+                formation: this.props.teams.teams.formation,
+                salary_cap: this.props.teams.teams.salary_cap - totalPlayerCost
+            }))  
         }, 100)
-      }
+    }
 
-    createPlayers() {
+    checkForPlayer = () => {
+        if (this.props.teams.teams.players) {
+            const playerNames = this.props.teams.teams.players.map(player => {
+                return player.name
+            })
+            return playerNames
+        }
+    }
+    
+    createPlayers = () => {
+        const playerNames = this.checkForPlayer()
         if (this.props.players.players.length > 0) {
             return this.props.players.players.map((player, i) => {
-                return <option key={i} value={player.id}>{player.name} Price: ${player.value} {player.position}</option>
+                if (playerNames !== undefined) {
+                    if (!playerNames.includes(player.name)) {
+                        return <option key={i} value={player.id}>{player.name} Price: ${player.value} {player.position}</option>
+                    }
+                }  
             })
         }
     }
@@ -76,7 +90,8 @@ s
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Choose Player to Add:
-                        <select name='player_id' value={this.state.transfer.player_id} onChange={this.handleChange}>
+                        <select name='player_id'  value={this.state.transfer.player_id} onChange={this.handleChange}>
+                            <option value='DEFAULT' >Choose a Player to Add</option>
                             {this.createPlayers()}
                         </select><br></br>
                     </label>
