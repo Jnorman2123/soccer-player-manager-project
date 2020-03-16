@@ -41,7 +41,8 @@ class EditTeamForm extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <h1>Edit Team Form</h1>
+                <form class='form' onSubmit={this.handleSubmit}>
                     <label>Name: </label>
                     <input type='text' name='name' onChange={this.handleChange} value={this.state.name}></input><br></br>
                     <label>

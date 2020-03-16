@@ -30,8 +30,8 @@ s
     render() {
         return (
             <div>
-                <h3>Create a New Player</h3>
-                <form onSubmit={this.handleSubmit}> 
+                <h1>Create a New Player</h1>
+                <form class='form' onSubmit={this.handleSubmit}> 
                     <label>Name: </label>
                     <input name='name' type='text' onChange={this.handleChange} value={this.state.name}></input><br></br>
                     <label>
