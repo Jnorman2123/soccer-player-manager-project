@@ -86,18 +86,18 @@ s
 
     render() {
         return (
-            <div>
-                Remaining Salary Cap ${this.state.salary_cap}
-                <form onSubmit={this.handleSubmit}>
+            <div class='team'>
+                <h1>{this.state.name}</h1>
+                <h3>Remaining Salary Cap ${this.state.salary_cap}</h3><br></br>
+                <form class='form' onSubmit={this.handleSubmit}>
                     <label>
-                        Choose Player to Add:
                         <select name='player_id'  value={this.state.transfer.player_id} onChange={this.handleChange}>
                             <option value='DEFAULT' >Choose a Player to Add</option>
                             {this.createPlayers()}
                         </select><br></br>
                     </label>
                     <input type='submit'value="Add Player"></input>
-                </form>
+                </form><br></br>
                 <Link to={{pathname: `/teams/${this.props.teamId}`}  }>
                     <button>Back to Team</button>
                 </Link>

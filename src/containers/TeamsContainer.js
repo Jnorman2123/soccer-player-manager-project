@@ -13,17 +13,20 @@ class TeamsContainer extends Component {
 
     renderTeams()  {
         if (this.props.teams.teams.length !== undefined) {
-            return this.props.teams.teams.map((team, i) => {
+            return <ul class='w3-ul w3-hoverable'>
+                {this.props.teams.teams.map((team, i) => {
                 return <Link to={`/teams/${team.id}`} key={i}>
-                    <p>{team.name} </p>
+                    <li><h3>{team.name}</h3></li>
                 </Link>
-            })
+            })}
+            </ul>
         }
     }
 
     render() {
         return (
-            <div>
+            <div class='team'>
+                <h1>Teams</h1>
                 <Teams renderTeams={this.renderTeams} props={this.props} />
             </div>
         )

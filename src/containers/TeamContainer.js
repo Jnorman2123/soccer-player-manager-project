@@ -53,24 +53,28 @@ class TeamContainer extends Component {
             </div>
             
         } else if (players !== undefined && players.length > 0) {
-            return <div name={position}>
-                <h3>{position}s</h3>
-                {players.map((player, i) => {
-                    if (player.position === position) {
-                        return <div key={i}>
-                            <h3>{player.name}</h3>
-                            {player.transfers.map((transfer, i) => {
-                                if (transfer.team_id.toString() === teamId) {
-                                    return <button key={i}
-                                    onClick={() => {
-                                        this.props.deleteTransfer(transfer.id);
-                                        this.props.history.push(`/teams/`)} }>
-                                        Remove {player.name}
-                                    </button>
-                                } 
-                            })}
-                        </div>
-                }})}
+            return <div class='table' name={position}>
+                <h3>{position}s</h3> 
+                <table class='w3-table-all w3-card-4'>
+                    {players.map((player, i) => {
+                        if (player.position === position) {
+                            return <tr key={i}>
+                                <td>{player.name}</td>
+                                <td>${player.value}</td>
+                                {player.transfers.map((transfer, i) => {
+                                    if (transfer.team_id.toString() === teamId) {
+                                        return <td><button key={i}
+                                            onClick={() => {
+                                                this.props.deleteTransfer(transfer.id);
+                                                this.props.history.push(`/teams/`)} }>
+                                            Remove {player.name}
+                                        </button></td>
+                                    }                                
+                                })}
+                            </tr>
+                        }
+                    })}
+                </table>
             </div>
         }
     }
@@ -96,7 +100,7 @@ class TeamContainer extends Component {
 
     render() {
         return (
-            <div>
+            <div class='team'>
                 <Team props={this.props} renderTeam={this.renderTeam} renderPlayers={this.renderPlayers} />
                 
             </div>   

@@ -7,7 +7,6 @@ class TransferContainer extends Component {
         const teamId = this.props.match.params.teamID
         return (
             <div>
-                TransferContainer
                 <Transfer teamId={teamId} props={this.props} />
             </div>
         )
