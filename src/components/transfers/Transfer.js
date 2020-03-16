@@ -23,7 +23,26 @@ class Transfer extends Component {
         this.props.teams.teams = []
         this.props.fetchPlayers() 
         this.props.fetchTeam(this.props.teamId)
+        this.getTeamData()
     }
+
+    getTeamData = () => {
+        this.setState({
+            name: '',
+            formation: '',
+            salary_cap: ''
+        })
+        
+        setTimeout(() => {
+          const playerCosts = this.props.teams.teams.players.map(player => player.value)
+          const totalPlayerCost = playerCosts.reduce((previousCost, currentCost, index) => previousCost + currentCost, 0)
+          this.setState( () => ({
+            name: this.props.teams.teams.name,
+            formation: this.props.teams.teams.formation,
+            salary_cap: this.props.teams.teams.salary_cap - totalPlayerCost
+          }))  
+        }, 100)
+      }
 
     createPlayers() {
         if (this.props.players.players.length > 0) {
@@ -53,7 +72,7 @@ s
     render() {
         return (
             <div>
-                Remaining Salary Cap ${this.props.teams.teams.salary_cap}
+                Remaining Salary Cap ${this.state.salary_cap}
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Choose Player to Add:

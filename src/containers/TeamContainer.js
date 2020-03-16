@@ -17,6 +17,12 @@ class TeamContainer extends Component {
     
 
     getTeamData = () => {
+        this.setState({
+            name: '',
+            formation: '',
+            salary_cap: ''
+        })
+        
         setTimeout(() => {
           const playerCosts = this.props.teams.teams.players.map(player => player.value)
           const totalPlayerCost = playerCosts.reduce((previousCost, currentCost, index) => previousCost + currentCost, 0)
@@ -24,10 +30,8 @@ class TeamContainer extends Component {
             name: this.props.teams.teams.name,
             formation: this.props.teams.teams.formation,
             salary_cap: this.props.teams.teams.salary_cap - totalPlayerCost
-          }), () => {
-            this.props.teams.teams = this.state
-          })  
-        }, 500)
+          }))  
+        }, 100)
       }
 
     componentDidMount() {
@@ -37,24 +41,26 @@ class TeamContainer extends Component {
     }
 
     renderPlayers = () => {
-        const theTeam = this.props.teams.teams
-        if (theTeam.players !== undefined && theTeam.players.length === 0 && this.state.name !== '') {
+        const theTeam = this.state
+        const teamId = this.props.match.params.teamID
+        const players = this.props.teams.teams.players
+        if (players !== undefined && players.length === 0 && this.state.name !== '') {
             return <div>
                 <h4>This Team Currently Has No Players</h4>
-                <Link to={{pathname: `/teams/${theTeam.id}/transfer`, team: theTeam }  }>
+                <Link to={{pathname: `/teams/${teamId}/transfer`, team: theTeam }  }>
                     <button>Add Player to {theTeam.name}</button>
                 </Link>
             </div>
             
-        } else if (theTeam.players !== undefined && theTeam.players.length > 0) {
+        } else if (players !== undefined && players.length > 0) {
             return <div>
                 <h3>Players</h3>
-                {theTeam.players.map((player, i) => {
+                {players.map((player, i) => {
                         return <div key={i}>
                             <h3>{player.name}</h3>
                             <h4>{player.position}</h4>
                             {player.transfers.map((transfer, i) => {
-                                if (transfer.team_id === theTeam.id) {
+                                if (transfer.team_id.toString() === teamId) {
                                     return <button key={i}
                                     onClick={() => {
                                         this.props.deleteTransfer(transfer.id);
@@ -65,7 +71,7 @@ class TeamContainer extends Component {
                             })}
                         </div>
                 })}<br></br>
-            <Link to={{pathname: `/teams/${theTeam.id}/transfer`, team: theTeam }  }>
+            <Link to={{pathname: `/teams/${teamId}/transfer`, team: theTeam }  }>
                         <button>Add Player to {theTeam.name}</button>
             </Link>
             </div>
@@ -74,13 +80,14 @@ class TeamContainer extends Component {
 
     renderTeam = () => {
         const theTeam = this.state
+        const teamId = this.props.match.params.teamID
         if (theTeam.name !== '') {
             return <div>
                 <h2>{theTeam.name}</h2>
                 <h3>{theTeam.formation}</h3>
                 <h4>{theTeam.name} has ${theTeam.salary_cap} remaining salary cap balance.</h4>
-                <button onClick={() => {this.props.deleteTeam(theTeam.id); this.props.history.push('/teams')} }>Delete {theTeam.name}</button>
-                <Link to={{pathname: `/teams/${theTeam.id}/edit`, team: theTeam }  }>
+                <button onClick={() => {this.props.deleteTeam(teamId); this.props.history.push('/teams')} }>Delete {theTeam.name}</button>
+                <Link to={{pathname: `/teams/${teamId}/edit`, team: this.props.teams.teams }  }>
                         <button>Edit {theTeam.name}</button>
                 </Link>
             </div>
