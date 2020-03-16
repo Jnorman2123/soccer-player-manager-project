@@ -15,7 +15,7 @@ class PlayerContainer extends Component {
         const thePlayer = this.props.players.players.filter(player => player.id === parseInt(playerId))[0]
         if (thePlayer !== undefined) {
             return <div>
-                <h2>{thePlayer.name}</h2>
+                <h1>{thePlayer.name}</h1>
                 <h3>{thePlayer.position}</h3>
                 <h4>{thePlayer.name} has a value of  ${thePlayer.value.toString()}.</h4>
                 <button onClick={() => {this.props.deletePlayer(playerId); this.props.history.push('/players')} }>Delete {thePlayer.name}</button>
