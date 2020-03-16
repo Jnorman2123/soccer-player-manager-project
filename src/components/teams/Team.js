@@ -8,6 +8,7 @@ const Team = (props) => {
             {props.renderPlayers(props.props, 'Midfielder')}
             {props.renderPlayers(props.props, 'Defender')}
             {props.renderPlayers(props.props, 'Goalkeeper')}
+            {props.renderNoPlayers()}
         </>
     )  
 } 

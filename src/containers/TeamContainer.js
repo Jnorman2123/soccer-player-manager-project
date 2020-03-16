@@ -40,7 +40,7 @@ class TeamContainer extends Component {
         this.getTeamData()
     }
 
-    renderPlayers = (props, position) => {
+    renderNoPlayers = (props) => {
         const theTeam = this.state
         const teamId = this.props.match.params.teamID
         const players = this.props.teams.teams.players
@@ -50,9 +50,15 @@ class TeamContainer extends Component {
                 <Link to={{pathname: `/teams/${teamId}/transfer`, team: theTeam }  }>
                     <button>Add Player to {theTeam.name}</button>
                 </Link>
-            </div>
-            
-        } else if (players !== undefined && players.length > 0) {
+            </div> 
+        }
+    }
+
+    renderPlayers = (props, position) => {
+        // const theTeam = this.state
+        const teamId = this.props.match.params.teamID
+        const players = this.props.teams.teams.players
+         if (players !== undefined && players.length > 0) {
             return <div class='table' name={position}>
                 <h3>{position}s</h3> 
                 <table class='w3-table-all w3-card-4'>
@@ -101,7 +107,7 @@ class TeamContainer extends Component {
     render() {
         return (
             <div class='team'>
-                <Team props={this.props} renderTeam={this.renderTeam} renderPlayers={this.renderPlayers} />
+                <Team props={this.props} renderTeam={this.renderTeam} renderPlayers={this.renderPlayers} renderNoPlayers={this.renderNoPlayers} />
                 
             </div>   
         )
