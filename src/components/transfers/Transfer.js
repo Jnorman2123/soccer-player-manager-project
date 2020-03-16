@@ -1,13 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addTransfer } from '../../actions/transfers/transferActions'
-import { fetchTeam } from '../../actions/teams/teamActions'
+import { fetchTeam, editTeam } from '../../actions/teams/teamActions'
 import { fetchPlayers } from '../../actions/players/playerActions'
+
 
 class Transfer extends Component {
     state = {
-        team_id: this.props.teamId,
-        player_id: ''
+        team: {
+            name: '',
+            formation: '',
+            salary_cap: ''
+        },
+        transfer: {
+            team_id: this.props.teamId,
+            player_id: ''
+        },
+        player_value: ''
     }
 
     componentDidMount() {
@@ -26,13 +35,17 @@ class Transfer extends Component {
 
     handleChange = (event) => {
         this.setState({
-            player_id: event.target.value
+            transfer: {
+                ...this.state.transfer, 
+                player_id: event.target.value
+            },
+            player_value: event.target.player_price
         })
     }
 s
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.addTransfer(this.state)
+        this.props.addTransfer(this.state.transfer)
         this.props.teams.teams = []
         this.props.props.history.push(`/teams/${this.props.teamId}`)
     }
@@ -44,7 +57,7 @@ s
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Choose Player to Add:
-                        <select name='player_id' value={this.state.player_id} onChange={this.handleChange}>
+                        <select name='player_id' value={this.state.transfer.player_id} onChange={this.handleChange}>
                             {this.createPlayers()}
                         </select><br></br>
                     </label>
@@ -62,4 +75,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { addTransfer, fetchTeam, fetchPlayers })(Transfer)
+export default connect(mapStateToProps, { addTransfer, fetchTeam, fetchPlayers, editTeam })(Transfer)

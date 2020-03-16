@@ -3,4 +3,5 @@ class TeamSerializer < ActiveModel::Serializer
   def players 
       ActiveModel::SerializableResource.new(object.players,  each_serializer: PlayerSerializer)
   end 
+
 end

@@ -10,7 +10,7 @@
 export function addTransfer(transfer) {
     return (dispatch) => { 
         dispatch({type: 'START_ADD_TRANSFER_REQUEST'})
-        return fetch('http://localhost:3001/transfers/', {
+        return fetch('http://localhost:3001/transfers', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -28,10 +28,12 @@ export function addTransfer(transfer) {
                     }
                 })
             })
+            .catch(error => console.log(error))
+        
     }
 }
 
-// export function editTeam(team, id) {
+// export function edittransfer(team, id) {
 //     return (dispatch) => { 
 //         dispatch({type: 'START_EDIT_TEAM_REQUEST'})
 //         return fetch(`http://localhost:3001/teams/${id}`, {

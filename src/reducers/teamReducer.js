@@ -4,7 +4,6 @@ export default function teamReducer(state = { teams: [], requesting: false }, ac
         case 'START_LOADING_TEAMS_REQUEST':
             return {
                 ...state,
-                teams: [...state.teams],
                 requesting: true
             }
         case 'LOAD_TEAMS':
@@ -16,7 +15,6 @@ export default function teamReducer(state = { teams: [], requesting: false }, ac
         case 'START_LOAD_TEAM_REQUEST':
             return {
                 ...state,
-                teams: [...state.teams],
                 requesting: true
             }
         case 'LOAD_TEAM':
@@ -28,7 +26,6 @@ export default function teamReducer(state = { teams: [], requesting: false }, ac
         case 'START_ADD_TEAM_REQUEST':
             return {
                 ...state,
-                teams: [...state.teams],
                 requesting: true
             }
         case 'ADD_TEAM': 
@@ -39,21 +36,19 @@ export default function teamReducer(state = { teams: [], requesting: false }, ac
             }
         case 'START_DELETE_TEAM_REQUEST':
             return {
-                ...state, 
-                teams: [...state.teams],
+                ...state,
                 requesting: true
             }
 
         case 'START_EDIT_TEAM_REQUEST':
             return {
                 ...state,
-                teams: [...state.teams],
                 requesting: true
             }
         case 'EDIT_TEAM':
             return {
                 ...state,
-                teams: [...state.teams, action.team],
+                teams: action.team,
                 requesting: false
             }
         default:
