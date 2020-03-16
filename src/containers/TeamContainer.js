@@ -20,15 +20,15 @@ class TeamContainer extends Component {
         setTimeout(() => {
           const playerCosts = this.props.teams.teams.players.map(player => player.value)
           const totalPlayerCost = playerCosts.reduce((previousCost, currentCost, index) => previousCost + currentCost, 0)
-          this.setState({
+          this.setState( () => ({
             name: this.props.teams.teams.name,
             formation: this.props.teams.teams.formation,
             salary_cap: this.props.teams.teams.salary_cap - totalPlayerCost
-          })
-          this.props.teams.teams = this.state
-        }, 100)
+          }), () => {
+            this.props.teams.teams = this.state
+          })  
+        }, 500)
       }
-    
 
     componentDidMount() {
         const teamId = this.props.match.params.teamID
