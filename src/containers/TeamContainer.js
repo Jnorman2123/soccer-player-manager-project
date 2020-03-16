@@ -64,7 +64,7 @@ class TeamContainer extends Component {
                                     return <button key={i}
                                     onClick={() => {
                                         this.props.deleteTransfer(transfer.id);
-                                        this.props.history.push(`/teams/`);} }>
+                                        this.props.history.push(`/teams/`)} }>
                                         Remove {player.name}
                                     </button>
                                 } 
@@ -98,6 +98,7 @@ class TeamContainer extends Component {
         return (
             <div>
                 <Team props={this.props} renderTeam={this.renderTeam} renderPlayers={this.renderPlayers} />
+                
             </div>   
         )
     }

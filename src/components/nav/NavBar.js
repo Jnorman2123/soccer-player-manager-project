@@ -4,25 +4,24 @@ import { Link } from 'react-router-dom'
 class NavBar extends Component {
     render () {
         return (
-           <div>
-               <div>
+           <div class='nav'>
+               <div class='navBar'>
                     <Link to='/'>
-                        <button>Home</button>
+                        <button class='button'>Home</button>
                     </Link>
                     <Link to='/teams'>
-                        <button>Teams</button>
+                        <button class='button'>Teams</button>
                     </Link>
                     <Link to='/players'>
-                        <button>Players</button>
+                        <button class='button'>Players</button>
                     </Link>
                     <Link to='/teams/new'>
-                        <button>Create a Team</button>
+                        <button class='button'>Create a Team</button>
                     </Link>
                     <Link to='/players/new'>
-                        <button>Create a Player</button>
+                        <button class='button'>Create a Player</button>
                     </Link>
                 </div>
-                   <br></br>
            </div> 
         )
     }

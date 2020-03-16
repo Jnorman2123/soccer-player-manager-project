@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { addTransfer } from '../../actions/transfers/transferActions'
 import { fetchTeam, editTeam } from '../../actions/teams/teamActions'
 import { fetchPlayers } from '../../actions/players/playerActions'
+import { Link } from 'react-router-dom'
 
 
 class Transfer extends Component {
@@ -57,8 +58,8 @@ class Transfer extends Component {
         const playerNames = this.checkForPlayer()
         if (this.props.players.players.length > 0) {
             return this.props.players.players.map((player, i) => {
-                if (playerNames !== undefined) {
-                    if (!playerNames.includes(player.name)) {
+                if (playerNames !== undefined && this.state.salary_cap > 0) {
+                    if (!playerNames.includes(player.name) && player.value < this.state.salary_cap) {
                         return <option key={i} value={player.id}>{player.name} Price: ${player.value} {player.position}</option>
                     }
                 }  
@@ -97,6 +98,9 @@ s
                     </label>
                     <input type='submit'value="Add Player"></input>
                 </form>
+                <Link to={{pathname: `/teams/${this.props.teamId}`}  }>
+                    <button>Back to Team</button>
+                </Link>
             </div>
         )
     }
