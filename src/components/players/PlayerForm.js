@@ -18,13 +18,12 @@ class PlayerForm extends Component {
 s
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.addPlayer(this.state)
+        this.props.addPlayer(this.state, this.props)
         this.setState({
             name: '',
             position: '',
             value: ''
         })
-        this.props.history.push('/players')
     }
 
     render() {

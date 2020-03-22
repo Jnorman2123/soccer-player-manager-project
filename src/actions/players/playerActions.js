@@ -16,7 +16,7 @@ export function fetchPlayer(id) {
     }
 }
 
-export function addPlayer(player) {
+export function addPlayer(player, props) {
     return (dispatch) => { 
         dispatch({type: 'START_ADD_PLAYER_REQUEST'})
         return fetch('http://localhost:3001/players', {
@@ -38,12 +38,20 @@ export function addPlayer(player) {
                         value: value
                     }
                 })
+                if (!playerData.errors) {
+                    props.history.push(`/players/${playerData.id}`)
+                } else {
+                    props.history.push({
+                        pathname: '/errors',
+                        response: playerData
+                    })
+                }  
             })
         
     }
 }
 
-export function editPlayer(player, id) {
+export function editPlayer(player, id, props) {
     return (dispatch) => { 
         dispatch({type: 'START_EDIT_PLAYER_REQUEST'})
         return fetch(`http://localhost:3001/players/${id}`, {
@@ -65,6 +73,14 @@ export function editPlayer(player, id) {
                         value: value
                     }
                 })
+                if (!playerData.errors) {
+                    props.history.push(`/players/${playerData.id}`)
+                } else {
+                    props.history.push({
+                        pathname: '/errors',
+                        response: playerData
+                    })
+                }  
             })
         
     }

@@ -28,13 +28,12 @@ s
     handleSubmit = (event) => {
         event.preventDefault()
         const playerId = this.props.match.params.playerID
-        this.props.editPlayer(this.state, playerId)
+        this.props.editPlayer(this.state, playerId, this.props)
         this.setState({
             name: '',
             position: '',
             value: ''
         })
-        this.props.history.push(`/players/${playerId}`)
     }
 
     render() {
