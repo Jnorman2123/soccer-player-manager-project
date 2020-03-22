@@ -18,13 +18,13 @@ class TeamForm extends Component {
 s
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.addTeam(this.state)
+        this.props.addTeam(this.state, this.props)
         this.setState({
             name: '',
             formation: '',
             salary_cap: ''
         })
-        this.props.history.push('/teams')
+        // this.props.history.push('/teams')
     }
 
     render() {

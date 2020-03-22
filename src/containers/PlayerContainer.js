@@ -14,7 +14,6 @@ class PlayerContainer extends Component {
         const playerId = this.props.match.params.playerID
         const thePlayer = this.props.players.players.filter(player => player.id === parseInt(playerId))[0]
         if (thePlayer && thePlayer !== undefined) {
-            console.log(thePlayer)
             return <div>
                 <h1>{thePlayer.name}</h1>
                 <h3>{thePlayer.position}</h3>

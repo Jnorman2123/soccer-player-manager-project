@@ -18,7 +18,7 @@ class TeamsController < ApplicationController
     if @team.save
       render json: @team, status: :created, location: @team
     else
-      render json: @team.errors, status: :unprocessable_entity
+      render json: { errors: @team.errors.full_messages }
     end
   end
 

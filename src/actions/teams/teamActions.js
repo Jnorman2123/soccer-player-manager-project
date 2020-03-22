@@ -16,7 +16,7 @@ export function fetchTeam(id) {
     }
 }
 
-export function addTeam(team) {
+export function addTeam(team, props) {
     return (dispatch) => { 
         dispatch({type: 'START_ADD_TEAM_REQUEST'})
         return fetch('http://localhost:3001/teams', {
@@ -38,8 +38,10 @@ export function addTeam(team) {
                         salary_cap: salary_cap
                     }
                 })
+                console.log(teamData)
+                props.history.push(`/teams/${teamData.id}`)
             })
-            .catch(error => console.log(error))
+            .catch(error => console.log(error.message))
         
     }
 }
