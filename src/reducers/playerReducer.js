@@ -27,7 +27,6 @@ export default function playerReducer( state = { players: [], requesting: false 
         case 'START_DELETE_PLAYER_REQUEST':
             return {
                 ...state, 
-                players: [...state.players],
                 requesting: true
             }
     

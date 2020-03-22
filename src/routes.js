@@ -11,6 +11,7 @@ import TeamForm from './components/teams/TeamForm'
 import EditTeamForm from './components/teams/EditTeamForm'
 import PlayerForm from './components/players/PlayerForm'
 import EditPlayerForm from './components/players/EditPlayerForm'
+import NoMatch from './components/nomatch/NoMatch'
 
 const routes = (
     <div>
@@ -20,12 +21,13 @@ const routes = (
             <Route exact path='/teams' component={TeamsContainer} />
             <Route exact path='/players' component={PlayersContainer} />
             <Route exact path='/teams/new' component={TeamForm} />
+            <Route path='/teams/:teamID' component={TeamContainer} />
             <Route exact path='/players/new' component={PlayerForm} />
-            <Route exact path='/teams/:teamID' component={TeamContainer} />
-            <Route exact path='/players/:playerID' component={PlayerContainer} />
+            <Route path='/players/:playerID' component={PlayerContainer} />
             <Route exact path='/teams/:teamID/edit' component={EditTeamForm} />
             <Route exact path='/players/:playerID/edit' component={EditPlayerForm} />
             <Route exact path='/teams/:teamID/transfer' component={TransferContainer} />
+            <Route component={NoMatch} />
         </Switch>
     </div>
 )

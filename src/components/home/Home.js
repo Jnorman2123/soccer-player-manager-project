@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class Home extends Component {
     render() {
         return (
-            <div class='team'>
+            <div className='team'>
                 <h1>Welcome!</h1>
                 <h4>This app allows you to create a soccer team of your dreams.</h4>
                 <h4>

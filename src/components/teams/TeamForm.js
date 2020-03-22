@@ -31,12 +31,12 @@ s
         return (
             <div>
                 <h1>Create a New Team</h1>
-                <form class='form' onSubmit={this.handleSubmit}> 
-                    <label for='name'>Name: </label>
-                    <input id='name' name='name' type='text' onChange={this.handleChange} value={this.state.name}></input>
-                    <label for='formation'>
+                <form className='form' onSubmit={this.handleSubmit}> 
+                    <label >Name: </label>
+                    <input name='name' type='text' onChange={this.handleChange} value={this.state.name}></input>
+                    <label>
                         Select Formation:
-                        <select id ='formation' name='formation' value={this.state.formation} onChange={this.handleChange}>
+                        <select name='formation' value={this.state.formation} onChange={this.handleChange}>
                             <option value='DEFAULT' >Choose a Formation</option>
                             <option value='4-3-3'>4-3-3</option>
                             <option value='4-4-2'>4-4-2</option>
@@ -44,8 +44,8 @@ s
                             <option value='3-5-2'>3-5-2</option>
                         </select> 
                     </label>
-                    <label for='salary_cap'>Salary Cap: </label>
-                    <input id='salary_cap' name='salary_cap' type='number' onChange={this.handleChange} value={this.state.salary_cap}></input>
+                    <label>Salary Cap: </label>
+                    <input name='salary_cap' type='number' onChange={this.handleChange} value={this.state.salary_cap}></input>
                     <input type='submit' value='Create Team'></input>
                 </form>
             </div>

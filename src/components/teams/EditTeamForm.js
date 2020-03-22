@@ -42,7 +42,7 @@ class EditTeamForm extends Component {
         return (
             <div>
                 <h1>Edit Team Form</h1>
-                <form class='form' onSubmit={this.handleSubmit}>
+                <form className='form' onSubmit={this.handleSubmit}>
                     <label>Name: </label>
                     <input type='text' name='name' onChange={this.handleChange} value={this.state.name}></input><br></br>
                     <label>

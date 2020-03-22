@@ -11,26 +11,26 @@ class PlayersContainer extends Component {
     }
 
     renderPlayers(position) {
-        return <div class='table' name={position}>
+        return <div className='table' name={position}>
             <h2>{position}s</h2>
-            <table class='w3-table-all w3-card-4'>
-                {this.props.players.players.map((player, i) => {
+            <table className='w3-table-all w3-card-4'>
+                <tbody>{this.props.players.players.map((player, i) => {
                     if (player.position === position) {
                         return <tr key={i}>
-                            <Link to={`/players/${player.id}`}>
-                                <td>{player.name}</td>
-                            </Link>
+                            <td><Link to={`/players/${player.id}`}>
+                                {player.name}
+                            </Link></td>
                             <td>Value: ${player.value}</td>
                         </tr>
                     } 
-                })}
+                })}</tbody> 
             </table>
         </div>
     }
 
     render () {
         return (
-            <div class='team'>
+            <div className='team'>
                 <h1>Players</h1>
                 <Players props={this.props} renderPlayers={this.renderPlayers} />
             </div>

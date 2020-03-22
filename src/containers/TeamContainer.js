@@ -24,13 +24,15 @@ class TeamContainer extends Component {
         })
         
         setTimeout(() => {
-          const playerCosts = this.props.teams.teams.players.map(player => player.value)
-          const totalPlayerCost = playerCosts.reduce((previousCost, currentCost, index) => previousCost + currentCost, 0)
-          this.setState( () => ({
-            name: this.props.teams.teams.name,
-            formation: this.props.teams.teams.formation,
-            salary_cap: this.props.teams.teams.salary_cap - totalPlayerCost
-          }))  
+            if (this.props.teams.teams.status !== 404) {
+                const playerCosts = this.props.teams.teams.players.map(player => player.value)
+                const totalPlayerCost = playerCosts.reduce((previousCost, currentCost, index) => previousCost + currentCost, 0)
+                this.setState( () => ({
+                name: this.props.teams.teams.name,
+                formation: this.props.teams.teams.formation,
+                salary_cap: this.props.teams.teams.salary_cap - totalPlayerCost
+            }))  
+            }      
         }, 100)
       }
 
@@ -40,7 +42,7 @@ class TeamContainer extends Component {
         this.getTeamData()
     }
 
-    renderNoPlayers = (props) => {
+    renderNoPlayers = () => {
         const theTeam = this.state
         const teamId = this.props.match.params.teamID
         const players = this.props.teams.teams.players
@@ -51,25 +53,26 @@ class TeamContainer extends Component {
                     <button>Add Player to {theTeam.name}</button>
                 </Link>
             </div> 
+        } else if (this.props.teams.teams.status === 404) {
+            return <div>{this.props.teams.teams.exception}</div>
         }
     }
 
     renderPlayers = (props, position) => {
-        // const theTeam = this.state
         const teamId = this.props.match.params.teamID
         const players = this.props.teams.teams.players
          if (players !== undefined && players.length > 0) {
-            return <div class='table' name={position}>
+            return <div className='table' name={position}>
                 <h3>{position}s</h3> 
-                <table class='w3-table-all w3-card-4'>
-                    {players.map((player, i) => {
+                <table className='w3-table-all w3-card-4'>
+                    <tbody>{players.map((player, i) => {
                         if (player.position === position) {
                             return <tr key={i}>
                                 <td>{player.name}</td>
                                 <td>${player.value}</td>
                                 {player.transfers.map((transfer, i) => {
                                     if (transfer.team_id.toString() === teamId) {
-                                        return <td><button key={i}
+                                        return <td key={i}><button 
                                             onClick={() => {
                                                 this.props.deleteTransfer(transfer.id);
                                                 this.props.history.push(`/teams/`)} }>
@@ -79,7 +82,7 @@ class TeamContainer extends Component {
                                 })}
                             </tr>
                         }
-                    })}
+                    })}</tbody>
                 </table>
             </div>
         }
@@ -106,7 +109,7 @@ class TeamContainer extends Component {
 
     render() {
         return (
-            <div class='team'>
+            <div className='team'>
                 <Team props={this.props} renderTeam={this.renderTeam} renderPlayers={this.renderPlayers} renderNoPlayers={this.renderNoPlayers} />
                 
             </div>   

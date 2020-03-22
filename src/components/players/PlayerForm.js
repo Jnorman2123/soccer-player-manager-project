@@ -31,7 +31,7 @@ s
         return (
             <div>
                 <h1>Create a New Player</h1>
-                <form class='form' onSubmit={this.handleSubmit}> 
+                <form className='form' onSubmit={this.handleSubmit}> 
                     <label>Name: </label>
                     <input name='name' type='text' onChange={this.handleChange} value={this.state.name}></input><br></br>
                     <label>

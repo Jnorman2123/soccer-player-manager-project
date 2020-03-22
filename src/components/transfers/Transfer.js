@@ -86,10 +86,10 @@ s
 
     render() {
         return (
-            <div class='team'>
+            <div className='team'>
                 <h1>{this.state.name}</h1>
                 <h3>Remaining Salary Cap ${this.state.salary_cap}</h3><br></br>
-                <form class='form' onSubmit={this.handleSubmit}>
+                <form className='form' onSubmit={this.handleSubmit}>
                     <label>
                         <select name='player_id'  value={this.state.transfer.player_id} onChange={this.handleChange}>
                             <option value='DEFAULT' >Choose a Player to Add</option>
