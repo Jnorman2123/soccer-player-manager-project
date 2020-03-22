@@ -46,13 +46,11 @@ export function addTeam(team, props) {
                         response: teamData
                     })
                 }  
-            })
-            .catch(error => console.log(error.message))
-        
+            })     
     }
 }
 
-export function editTeam(team, id) {
+export function editTeam(team, id, props) {
     return (dispatch) => { 
         dispatch({type: 'START_EDIT_TEAM_REQUEST'})
         return fetch(`http://localhost:3001/teams/${id}`, {
@@ -74,6 +72,14 @@ export function editTeam(team, id) {
                         salary_cap: salary_cap
                     }
                 })
+                if (!teamData.errors) {
+                    props.history.push(`/teams/${teamData.id}`)
+                } else {
+                    props.history.push({
+                        pathname: '/errors',
+                        response: teamData
+                    })
+                }  
             })
         
     }

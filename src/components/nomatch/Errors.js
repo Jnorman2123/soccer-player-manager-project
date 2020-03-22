@@ -4,7 +4,6 @@ import NoMatch from './NoMatch'
 class Errors extends Component {
    
     render () {
-        console.log(this.props)
         if (this.props.location.response) {
             return (
                 <div>

@@ -27,7 +27,7 @@ class TeamsController < ApplicationController
     if @team.update(team_params)
       render json: @team
     else
-      render json: @team.errors, status: :unprocessable_entity
+      render json: { errors: @team.errors.full_messages }
     end
   end
 

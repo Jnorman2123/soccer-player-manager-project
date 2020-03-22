@@ -28,13 +28,12 @@ class EditTeamForm extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         const teamId = this.props.match.params.teamID
-        this.props.editTeam(this.state, teamId)
+        this.props.editTeam(this.state, teamId, this.props)
         this.setState({
             name: '',
             formation: '',
             salary_cap: ''
         })
-        this.props.history.push(`/teams/${teamId}`)
     }
 
 
