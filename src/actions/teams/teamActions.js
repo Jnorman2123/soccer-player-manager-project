@@ -38,8 +38,14 @@ export function addTeam(team, props) {
                         salary_cap: salary_cap
                     }
                 })
-                console.log(teamData)
-                props.history.push(`/teams/${teamData.id}`)
+                if (!teamData.errors) {
+                    props.history.push(`/teams/${teamData.id}`)
+                } else {
+                    props.history.push({
+                        pathname: '/errors',
+                        response: teamData
+                    })
+                }  
             })
             .catch(error => console.log(error.message))
         
