@@ -12,6 +12,17 @@ export default function playerReducer( state = { players: [], requesting: false 
                 players: action.players,
                 requesting: false
             }
+        case 'START_LOAD_PLAYER_REQUEST':
+            return {
+                ...state,
+                requesting: true
+            }
+        case 'LOAD_PLAYER':
+            return {
+                ...state, 
+                players: action.player,
+                requesting: false
+            }
         case 'START_ADD_PLAYER_REQUEST':
             return {
                 ...state,

@@ -13,7 +13,8 @@ class PlayerContainer extends Component {
     renderPlayer() {
         const playerId = this.props.match.params.playerID
         const thePlayer = this.props.players.players.filter(player => player.id === parseInt(playerId))[0]
-        if (thePlayer !== undefined) {
+        if (thePlayer && thePlayer !== undefined) {
+            console.log(thePlayer)
             return <div>
                 <h1>{thePlayer.name}</h1>
                 <h3>{thePlayer.position}</h3>
@@ -23,6 +24,8 @@ class PlayerContainer extends Component {
                         <button>Edit {thePlayer.name}</button>
                 </Link>
             </div>
+        } else if (!thePlayer) {
+            return <div>That Player Does Not Exist!</div>
         }
     }
 

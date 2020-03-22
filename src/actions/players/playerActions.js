@@ -7,6 +7,15 @@ export function fetchPlayers() {
     }
 }
 
+export function fetchPlayer(id) {
+    return (dispatch) => {
+        dispatch({type: 'START_LOAD_PLAYER_REQUEST'})
+        return fetch(`http://localhost:3001/players/${id}`)
+            .then(resp => resp.json())
+            .then(player => dispatch({type: 'LOAD_PLAYER', player}))
+    }
+}
+
 export function addPlayer(player) {
     return (dispatch) => { 
         dispatch({type: 'START_ADD_PLAYER_REQUEST'})
