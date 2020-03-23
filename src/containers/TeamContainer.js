@@ -91,7 +91,7 @@ class TeamContainer extends Component {
     renderTeam = () => {
         const theTeam = this.state
         const teamId = this.props.match.params.teamID
-        if (theTeam.name !== '') {
+        if (theTeam.name !== '' && this.props.teams.requesting === false) {
             return <div>
                 <h2>{theTeam.name}</h2>
                 <h3>{theTeam.formation}</h3>
@@ -104,7 +104,9 @@ class TeamContainer extends Component {
                     <button>Add Player to {theTeam.name}</button>
                 </Link>
             </div>
-        }      
+        }   else if (this.props.teams.requesting === true) {
+            return <h1>Loading...</h1>
+        }     
     }
 
     render() {
@@ -120,6 +122,7 @@ class TeamContainer extends Component {
 const mapStateToProps = (state) => {
     return {
         teams: state.teams,
+        requesting: state.requesting
     }
 }
 
