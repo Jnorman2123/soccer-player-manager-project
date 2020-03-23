@@ -11,21 +11,25 @@ class PlayersContainer extends Component {
     }
 
     renderPlayers(position) {
-        return <div className='table' name={position}>
-            <h2>{position}s</h2>
-            <table className='w3-table-all w3-card-4'>
-                <tbody>{this.props.players.players.map((player, i) => {
-                    if (player.position === position) {
-                        return <tr key={i}>
-                            <td><Link to={`/players/${player.id}`}>
-                                {player.name}
-                            </Link></td>
-                            <td>Value: ${player.value}</td>
-                        </tr>
-                    } 
-                })}</tbody> 
-            </table>
-        </div>
+        if (this.props.players.requesting === true) {
+            return <h1>Loading...</h1>
+        } else {
+            return <div className='table' name={position}>
+                <h2>{position}s</h2>
+                <table className='w3-table-all w3-card-4'>
+                    <tbody>{this.props.players.players.map((player, i) => {
+                        if (player.position === position) {
+                            return <tr key={i}>
+                                <td><Link to={`/players/${player.id}`}>
+                                    {player.name}
+                                </Link></td>
+                                <td>Value: ${player.value}</td>
+                            </tr>
+                        } 
+                    })}</tbody> 
+                </table>
+            </div>
+        }  
     }
 
     render () {
@@ -39,7 +43,10 @@ class PlayersContainer extends Component {
 }
 
 function mapStateToProps(state) {
-    return { players: state.players}
+    return {
+        players: state.players,
+        requesting: state.requesting
+    }
 }
 
 export default connect(mapStateToProps, { fetchPlayers })(PlayersContainer) 
