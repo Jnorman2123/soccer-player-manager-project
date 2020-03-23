@@ -12,7 +12,7 @@ class TeamsContainer extends Component {
     }
 
     renderTeams()  {
-        if (this.props.teams.teams.length !== undefined) {
+        if (this.props.teams.teams.length !== undefined && this.props.teams.requesting === false) {
             return <ul className='w3-ul w3-hoverable'>
                 {this.props.teams.teams.map((team, i) => {
                 return <Link to={`/teams/${team.id}`} key={i}>
@@ -20,6 +20,8 @@ class TeamsContainer extends Component {
                 </Link>
             })}
             </ul>
+        } else if (this.props.teams.requesting === true) {
+            return <h1>Loading...</h1>
         }
     }
 
@@ -34,7 +36,10 @@ class TeamsContainer extends Component {
 }
 
 function mapStateToProps(state) {
-    return {teams: state.teams}
+    return {
+        teams: state.teams, 
+        requesting: state.requesting
+    }
 }
 
 export default connect(mapStateToProps, { fetchTeams })(TeamsContainer)
