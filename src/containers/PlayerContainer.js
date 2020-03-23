@@ -13,7 +13,7 @@ class PlayerContainer extends Component {
     renderPlayer() {
         const playerId = this.props.match.params.playerID
         const thePlayer = this.props.players.players.filter(player => player.id === parseInt(playerId))[0]
-        if (thePlayer && thePlayer !== undefined) {
+        if (thePlayer && thePlayer !== undefined && this.props.players.requesting === false) {
             return <div>
                 <h1>{thePlayer.name}</h1>
                 <h3>{thePlayer.position}</h3>
@@ -25,6 +25,8 @@ class PlayerContainer extends Component {
             </div>
         } else if (!thePlayer) {
             return <div>That Player Does Not Exist!</div>
+        } else if (this.props.players.requesting === true) {
+            return <h1>Loading...</h1>
         }
     }
 
@@ -38,7 +40,10 @@ class PlayerContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {players: state.players}
+    return {
+        players: state.players,
+        requesting: state.requesting
+    }
 }
 
 export default connect(mapStateToProps, { fetchPlayers, deletePlayer })(PlayerContainer)
