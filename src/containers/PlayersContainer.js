@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchPlayers } from '../actions/players/playerActions'
-import { Link } from 'react-router-dom' 
+import Player from '../components/players/Player'
 import Players from '../components/players/Players'
 
 class PlayersContainer extends Component {
@@ -10,7 +10,7 @@ class PlayersContainer extends Component {
         this.props.fetchPlayers()
     }
 
-    renderPlayers(position) {
+    renderPlayers = (position) => {
         if (this.props.players.requesting === true) {
             return <h1>Loading...</h1>
         } else {
@@ -19,15 +19,11 @@ class PlayersContainer extends Component {
                 <table className='w3-table-all w3-card-4'>
                     <tbody>{this.props.players.players.map((player, i) => {
                         if (player.position === position) {
-                            return <tr key={i}>
-                                <td><Link to={`/players/${player.id}`}>
-                                    {player.name}
-                                </Link></td>
-                                <td>Value: ${player.value}</td>
-                            </tr>
+                            return <Player key={i} player={player} i={i} />
                         } 
                     })}</tbody> 
                 </table>
+                
             </div>
         }  
     }

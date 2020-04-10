@@ -19,6 +19,7 @@ s
     handleSubmit = (event) => {
         event.preventDefault()
         this.props.addTeam(this.state, this.props)
+
         this.setState({
             name: '',
             formation: '',
@@ -28,6 +29,7 @@ s
     }
 
     render() {
+
         return (
             <div>
                 <h1>Create a New Team</h1>

@@ -45,8 +45,8 @@ export function addTeam(team, props) {
                         pathname: '/errors',
                         response: teamData
                     })
-                }  
-            })     
+                }
+            }) 
     }
 }
 

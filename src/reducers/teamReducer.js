@@ -1,10 +1,12 @@
 
 export default function teamReducer(state = { teams: [], requesting: false }, action) {
+
     switch (action.type) {
         case 'START_LOADING_TEAMS_REQUEST':
             return {
                 ...state,
-                requesting: true
+                requesting: true,
+
             }
         case 'LOAD_TEAMS':
             return {

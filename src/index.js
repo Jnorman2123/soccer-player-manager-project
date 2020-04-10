@@ -9,9 +9,12 @@ import configureStore, { history } from './configureStore'
 const store = configureStore()
 
 ReactDOM.render(
-    <Provider store={store}>
+    <div>
+        <Provider store={store}>
         <App history={history} />
-    </Provider>,
+    </Provider>
+    </div>
+    ,
      document.getElementById('root')
 );
 
