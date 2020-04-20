@@ -28,10 +28,10 @@ class TeamContainer extends Component {
                 const playerCosts = this.props.teams.teams.players.map(player => player.value)
                 const totalPlayerCost = playerCosts.reduce((previousCost, currentCost, index) => previousCost + currentCost, 0)
                 this.setState( () => ({
-                name: this.props.teams.teams.name,
-                formation: this.props.teams.teams.formation,
-                salary_cap: this.props.teams.teams.salary_cap - totalPlayerCost
-            }))  
+                    name: this.props.teams.teams.name,
+                    formation: this.props.teams.teams.formation,
+                    salary_cap: this.props.teams.teams.salary_cap - totalPlayerCost
+                }))  
             }      
         }, 100)
       }

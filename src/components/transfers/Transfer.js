@@ -67,6 +67,19 @@ class Transfer extends Component {
         }
     }
 
+    createDefenders = () => {
+        const playerNames = this.checkForPlayer()
+        if (this.props.players.players.length > 0) {
+            return this.props.players.players.map((player, i) => {
+                if (playerNames !== undefined && this.state.salary_cap > 0) {
+                    if (!playerNames.includes(player.name) && player.value < this.state.salary_cap && player.position === 'Defender') {
+                        return <option key={i} value={player.id}>{player.name} Price: ${player.value} {player.position}</option>
+                    }
+                }
+            })
+        }
+    }
+
     handleChange = (event) => {
         this.setState({
             transfer: {
@@ -97,6 +110,15 @@ s
                         </select><br></br>
                     </label>
                     <input type='submit'value="Add Player"></input>
+                </form><br></br>
+                <form className='form' onSubmit={this.handleSubmit}>
+                    <label>
+                        <select name='player_id'  value={this.state.transfer.player_id} onChange={this.handleChange}>
+                            <option value='DEFAULT' >Add a Defender</option>
+                            {this.createDefenders()}
+                        </select><br></br>
+                    </label>
+                    <input type='submit'value="Add Defender"></input>
                 </form><br></br>
                 <Link to={{pathname: `/teams/${this.props.teamId}`}  }>
                     <button>Back to Team</button>
