@@ -12,7 +12,6 @@ class TeamsContainer extends Component {
     }
 
     renderTeams()  {
-        console.log(this.props)
         if (this.props.teams.teams.length !== undefined && this.props.teams.requesting === false) {
             return <ul className='w3-ul w3-hoverable'>
                 {this.props.teams.teams.map((team, i) => {

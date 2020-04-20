@@ -54,6 +54,28 @@ class Transfer extends Component {
         }
     }
 
+    checkFormation = (position) => {
+        if (this.props.teams.teams.formation) {
+            const playerPositions = this.props.teams.teams.players.map(player => {
+                return player.position
+            })
+            const formation = this.props.teams.teams.formation.split("-")
+            const goalKeeperCap = 1
+            const defenderCap = formation[0]
+            const midfielderCap = formation[1]
+            const forwardCap = formation[2]
+            if (position === 'Goalkeeper' && playerPositions.filter(name => name === position).length < goalKeeperCap) {
+                 return 'true'
+            } else if (position === 'Defender' && playerPositions.filter(name => name === position).length < defenderCap) {
+                return 'true'
+            } else if (position === 'Midfielder' && playerPositions.filter(name => name === position).length < midfielderCap) {
+                return 'true'
+            } else if (position === 'Forward' && playerPositions.filter(name => name === position).length < forwardCap) {
+                return 'true'
+            }
+        }
+    }
+
     createPlayers = (position) => {
         const playerNames = this.checkForPlayer()
         if (this.props.players.players.length > 0) {
@@ -68,17 +90,19 @@ class Transfer extends Component {
     }
 
     createAddForm = (position) => {
-        return <div>
-            <form className='form' onSubmit={this.handleSubmit}>
-                <label>
-                    <select name='player_id'  value={this.state.transfer.player_id} onChange={this.handleChange}>
-                        <option value='DEFAULT' >Add a {position}</option>
-                        {this.createPlayers(position)}
-                    </select><br></br>
-                </label>
-                <input type='submit'value="Add Player"></input>
-            </form><br></br>
-        </div>
+        if (this.checkFormation(position) === 'true') {
+            return <div>
+                <form className='form' onSubmit={this.handleSubmit}>
+                    <label>
+                        <select name='player_id'  value={this.state.transfer.player_id} onChange={this.handleChange}>
+                            <option value='DEFAULT' >Add a {position}</option>
+                            {this.createPlayers(position)}
+                        </select><br></br>
+                    </label>
+                    <input type='submit'value="Add Player"></input>
+                </form><br></br>
+            </div>
+        }
     }
 
     handleChange = (event) => {
@@ -102,20 +126,12 @@ s
         return (
             <div className='team'>
                 <h1>{this.state.name}</h1>
+                <h3>{this.state.formation}</h3>
                 <h3>Remaining Salary Cap ${this.state.salary_cap}</h3><br></br>
                 {this.createAddForm('Goalkeeper')}
                 {this.createAddForm('Defender')}
                 {this.createAddForm('Midfielder')}
                 {this.createAddForm('Forward')}
-                {/* <form className='form' onSubmit={this.handleSubmit}>
-                    <label>
-                        <select name='player_id'  value={this.state.transfer.player_id} onChange={this.handleChange}>
-                            <option value='DEFAULT' >Add a Defender</option>
-                            {this.createDefenders()}
-                        </select><br></br>
-                    </label>
-                    <input type='submit'value="Add Defender"></input>
-                </form><br></br> */}
                 <Link to={{pathname: `/teams/${this.props.teamId}`}  }>
                     <button>Back to Team</button>
                 </Link>
